@@ -1,0 +1,11 @@
+{
+  "name": "Deinxel Digital Studio",
+  "description": "Artisan digital experiences and elite systems architecture for visionary brands.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
