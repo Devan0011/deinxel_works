@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deinxel | Admin Dashboard</title>
+  </head>
+  <body class="bg-bg-paper text-ink min-h-screen">
+    <div id="loader" class="fixed inset-0 z-[100] bg-bg-paper flex items-center justify-center overflow-hidden">
+      <div class="relative flex flex-col items-center">
+        <div class="text-primary-accent text-4xl md:text-6xl font-display italic tracking-widest opacity-0 mb-6" id="loader-logo">Deinxel Admin</div>
+        <div class="w-64 h-[1px] bg-primary-accent/10 relative overflow-hidden">
+          <div class="absolute inset-0 bg-gold origin-left scale-x-0" id="loader-progress"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 px-4 py-3 sm:py-6 transition-all duration-500 ease-out">
+      <nav class="max-w-7xl mx-auto flex items-center justify-between glass px-5 sm:px-8 py-3 rounded-full shadow-lg">
+        <a href="/" class="text-xl sm:text-2xl font-display font-bold text-primary-accent italic tracking-tighter shrink-0">Deinxel</a>
+        <div class="flex items-center gap-3 sm:gap-6">
+          <a href="/" class="btn-primary py-2.5 px-6 text-[10px] whitespace-nowrap">
+            <span>Back to Site</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pt-32 pb-24 px-6 max-w-7xl mx-auto" style="opacity: 0" id="main-content">
+        <div class="space-y-12 sm:space-y-20">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 sm:gap-8">
+                <div>
+                    <span class="text-[9px] sm:text-[10px] font-accent font-bold uppercase tracking-[0.5em] text-gold mb-3 sm:mb-4 block">Central Command</span>
+                    <h2 class="text-4xl sm:text-6xl md:text-8xl italic font-display tracking-tighter">Agency <span class="text-primary-accent">Intelligence</span></h2>
+                </div>
+                <div class="glass py-3 sm:py-4 px-6 sm:px-10 rounded-full text-[8px] sm:text-[10px] font-accent font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-gold border-gold/10 whitespace-nowrap w-fit">Status: Overseer</div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8 md:gap-10">
+                <!-- Inquiries -->
+                <div class="glass p-6 sm:p-8 md:p-12 lg:p-20 rounded-[30px] sm:rounded-[40px] md:rounded-[80px] border-white shadow-2xl relative overflow-hidden h-fit">
+                    <div class="flex items-center justify-between mb-8 sm:mb-16">
+                        <h3 class="text-2xl sm:text-3xl md:text-4xl italic font-display">Recent <span class="text-primary-accent">Inquiries</span></h3>
+                    </div>
+                    <div class="space-y-6 sm:space-y-8" id="admin-inquiries-list">
+                        <!-- Inquiries rendered here -->
+                        <p class="text-[9px] sm:text-[10px] font-accent uppercase tracking-widest opacity-40">Scanning communication lines...</p>
+                    </div>
+                </div>
+                <!-- Bookings -->
+                <div class="glass p-6 sm:p-8 md:p-12 lg:p-20 rounded-[30px] sm:rounded-[40px] md:rounded-[80px] border-white shadow-2xl relative overflow-hidden h-fit">
+                    <div class="flex items-center justify-between mb-8 sm:mb-16">
+                        <h3 class="text-2xl sm:text-3xl md:text-4xl italic font-display">Session <span class="text-gold">Requests</span></h3>
+                    </div>
+                    <div class="space-y-6 sm:space-y-8" id="admin-bookings-list">
+                        <!-- Bookings rendered here -->
+                        <p class="text-[9px] sm:text-[10px] font-accent uppercase tracking-widest opacity-40">Retrieving operational schedule...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="/src/admin.ts"></script>
+  </body>
+</html>
