@@ -2,44 +2,171 @@ export const renderServices = (container: HTMLElement) => {
   const services = [
     {
       icon: 'Monitor',
-      title: 'Digital Systems',
-      desc: 'High-performance architected systems that scale with your exponential growth.',
-      features: ['Technical Audit', 'Systems Architecture', 'Performance Scaling']
+      title: 'Premium Website Design & Development',
+      desc: 'Modern websites designed to create a strong digital presence with visually immersive layouts and smooth user experiences.',
+      sections: [
+        {
+          label: 'Features',
+          items: ['Fully Responsive Design', 'Premium Modern UI', 'Mobile-First Layouts', 'Fast Loading Performance', 'Interactive Sections', 'Smooth Scrolling Experience', 'SEO-Friendly Structure', 'Cross-Browser Compatibility', 'Scalable Architecture', 'Clean & Organized Code']
+        },
+        {
+          label: 'Included',
+          items: ['Homepage Design', 'About Section', 'Services Section', 'Portfolio Showcase', 'Contact System', 'Booking Forms', 'CTA Sections', 'Footer Design', 'Custom Layouts']
+        },
+        {
+          label: 'Perfect For',
+          items: ['Businesses', 'Startups', 'Agencies', 'Cafes & Restaurants', 'Creators', 'Personal Brands', 'Portfolios']
+        }
+      ]
     },
     {
       icon: 'Layout',
-      title: 'Immersive UI/UX',
-      desc: 'Choreographed digital interfaces that prioritize human emotion and aesthetic.',
-      features: ['Sensory Design', 'Interaction Mapping', 'Narrative UX']
-    },
-    {
-      icon: 'Target',
-      title: 'Growth Strategy',
-      desc: 'Data-driven conversion funnels built to capture and retain market attention.',
-      features: ['Conversion Audit', 'Identity Design', 'Market Positioning']
-    },
-    {
-      icon: 'Layers',
-      title: 'Web Software',
-      desc: 'Sophisticated full-stack applications with robust, secure infrastructure.',
-      features: ['Custom Logic', 'Database Schema', 'API Ecosystems']
-    },
-    {
-      icon: 'ShoppingBag',
-      title: 'Luxury Commerce',
-      desc: 'Bespoke shopping experiences designed for high-end boutique performance.',
-      features: ['Dynamic Catalog', 'Seamless Checkout', 'Inventory Sync']
+      title: 'Modern UI/UX Design',
+      desc: 'Beautiful and intuitive user interfaces designed to improve engagement and deliver seamless digital experiences.',
+      sections: [
+        {
+          label: 'Design Focus',
+          items: ['Clean Layout Structure', 'Premium Typography', 'Smooth User Navigation', 'Modern Color Systems', 'Interactive Components', 'Elegant Spacing & Alignment', 'Consistent Visual Identity']
+        },
+        {
+          label: 'UI Features',
+          items: ['Minimal Modern Design', 'Dynamic Layouts', 'Interactive Hover Effects', 'Scroll-Based Animations', 'Modern Cards & Sections', 'Advanced Visual Hierarchy']
+        },
+        {
+          label: 'Result',
+          items: ['A visually attractive and user-friendly experience that keeps visitors engaged.']
+        }
+      ]
     },
     {
       icon: 'Code',
-      title: 'Lead Production',
-      desc: 'Hand-crafted technical production with zero-compromise code quality.',
-      features: ['Zero Bloat', 'A-Grade SEO', 'Modern Tech Stack']
+      title: 'Full Stack Web Development',
+      desc: 'Complete frontend and backend solutions built with modern technologies and scalable systems.',
+      sections: [
+        {
+          label: 'Frontend Technologies',
+          items: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Vite', 'Tailwind CSS']
+        },
+        {
+          label: 'Backend Technologies',
+          items: ['Node.js', 'Express.js', 'Supabase']
+        },
+        {
+          label: 'Development Features',
+          items: ['Authentication Systems', 'Database Integration', 'API Development', 'Dynamic Content Systems', 'Secure Backend Architecture', 'Cloud-Based Infrastructure', 'Real-Time Data Handling']
+        },
+        {
+          label: 'Benefits',
+          items: ['High Performance', 'Scalable Structure', 'Better Security', 'Future-Ready Systems', 'Easy Maintenance']
+        }
+      ]
+    },
+    {
+      icon: 'PanelsTopLeft',
+      title: 'Admin Dashboard Systems',
+      desc: 'Powerful dashboard systems designed to give complete control over website content and business operations.',
+      sections: [
+        {
+          label: 'Dashboard Features',
+          items: ['Content Management', 'User Management', 'Product Management', 'Booking Management', 'Order Tracking', 'Media Upload System', 'Analytics Dashboard', 'Real-Time Updates', 'Secure Login System', 'Role-Based Access']
+        },
+        {
+          label: 'Dashboard Experience',
+          items: ['Modern Admin UI', 'Fast Navigation', 'Clean Interface', 'Smart Data Management', 'Easy Content Editing']
+        },
+        {
+          label: 'Ideal For',
+          items: ['Business Websites', 'E-Commerce Platforms', 'Booking Systems', 'Client Portals', 'Management Systems']
+        }
+      ]
+    },
+    {
+      icon: 'ShoppingBag',
+      title: 'E-Commerce Development',
+      desc: 'Modern online stores built for performance, security, and smooth customer experiences.',
+      sections: [
+        {
+          label: 'E-Commerce Features',
+          items: ['Product Catalog', 'Shopping Cart', 'Secure Checkout', 'Payment Integration', 'Order Management', 'Inventory Tracking', 'Customer Dashboard', 'Mobile Shopping Experience', 'Wishlist System', 'Product Search & Filters']
+        },
+        {
+          label: 'Store Experience',
+          items: ['Smooth User Journey', 'Fast Product Browsing', 'Modern Product Pages', 'Optimized Checkout Flow']
+        },
+        {
+          label: 'Perfect For',
+          items: ['Fashion Brands', 'Product Businesses', 'Cafes & Bakeries', 'Digital Stores', 'Lifestyle Brands']
+        }
+      ]
+    },
+    {
+      icon: 'RadioTower',
+      title: 'Real-Time Features & Interactive Systems',
+      desc: 'Interactive web experiences powered by real-time technologies and dynamic communication systems.',
+      sections: [
+        {
+          label: 'Real-Time Features',
+          items: ['Live Chat Systems', 'Instant Notifications', 'Real-Time Messaging', 'Dynamic Content Updates', 'Collaborative Features', 'Live Data Synchronization']
+        },
+        {
+          label: 'Interactive Experience',
+          items: ['Faster Communication', 'Better User Engagement', 'Dynamic User Experience', 'Seamless Interaction']
+        },
+        {
+          label: 'Use Cases',
+          items: ['Support Platforms', 'Team Systems', 'Social Platforms', 'Client Communication']
+        }
+      ]
+    },
+    {
+      icon: 'Sparkles',
+      title: 'Parallax Effects & Premium Animations',
+      desc: 'Cinematic scrolling experiences and modern animations designed to create immersive web interactions.',
+      sections: [
+        {
+          label: 'Animation Features',
+          items: ['Layered Parallax Scrolling', 'Motion-Based Sections', 'Smooth Page Transitions', 'Text Reveal Effects', 'Interactive Hover Animations', 'Dynamic Scroll Effects', 'Image Layer Animations', 'Floating Elements', 'Smooth Motion Experience']
+        },
+        {
+          label: 'Visual Impact',
+          items: ['Premium Feel', 'Modern User Experience', 'Higher User Engagement', 'Cinematic Website Flow']
+        }
+      ]
+    },
+    {
+      icon: 'Gauge',
+      title: 'SEO & Performance Optimization',
+      desc: 'Optimized websites designed for speed, visibility, and better search rankings.',
+      sections: [
+        {
+          label: 'Optimization Includes',
+          items: ['Fast Loading Speed', 'Optimized Assets', 'SEO-Friendly Structure', 'Mobile Optimization', 'Semantic HTML', 'Accessibility Improvements', 'Better Performance Scores', 'Lightweight Architecture']
+        },
+        {
+          label: 'Benefits',
+          items: ['Better Search Visibility', 'Improved User Retention', 'Higher Performance', 'Enhanced User Experience']
+        }
+      ]
+    },
+    {
+      icon: 'Wrench',
+      title: 'Maintenance & Technical Support',
+      desc: 'Reliable support and maintenance services to keep your website updated, secure, and performing at its best.',
+      sections: [
+        {
+          label: 'Support Includes',
+          items: ['Bug Fixes', 'Security Updates', 'Performance Monitoring', 'Feature Enhancements', 'Content Updates', 'Technical Assistance', 'Optimization Improvements']
+        },
+        {
+          label: 'Goal',
+          items: ['Ensuring long-term stability, performance, and growth for your digital platform.']
+        }
+      ]
     }
   ];
 
   container.innerHTML = services.map((s, i) => `
-    <div class="service-card group p-6 sm:p-8 md:p-12 lg:p-14 relative overflow-hidden transition-all duration-700 bg-white/[0.12] backdrop-blur-md border border-white/5 flex flex-col justify-between min-h-[400px] sm:min-h-[440px] md:min-h-[480px] hover:bg-white/[0.18] hover:border-white/10" data-index="${i}">
+    <div class="service-card group p-6 sm:p-8 md:p-10 lg:p-12 relative overflow-hidden transition-all duration-700 bg-white/[0.12] backdrop-blur-md border border-white/5 flex flex-col justify-between min-h-[520px] hover:bg-white/[0.18] hover:border-white/10" data-index="${i}">
         <!-- Texture & Depth -->
         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03] mix-blend-overlay pointer-events-none"></div>
         <div class="absolute inset-0 bg-gradient-to-br from-gold/[0.15] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
@@ -49,38 +176,44 @@ export const renderServices = (container: HTMLElement) => {
         <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gold/60 to-transparent -translate-y-full group-hover:translate-y-[600px] transition-transform duration-[3000ms] ease-in-out opacity-0 group-hover:opacity-100"></div>
 
         <div class="relative z-10 flex flex-col h-full">
-            <div class="flex justify-between items-start mb-12 sm:mb-16">
+            <div class="flex justify-between items-start mb-10 sm:mb-12">
                 <div class="flex flex-col gap-1 text-white">
-                    <span class="text-[8px] font-accent font-bold text-gold opacity-100 tracking-[0.6em] mb-1">CAPABILITY</span>
+                    <span class="text-[8px] font-accent font-bold text-gold opacity-100 tracking-[0.6em] mb-1">WHAT I OFFER</span>
                     <div class="flex items-baseline gap-2">
-                        <span class="text-3xl sm:text-4xl font-display italic text-white/40 group-hover:text-gold transition-colors duration-700">0${i + 1}</span>
+                        <span class="text-3xl sm:text-4xl font-display italic text-white/40 group-hover:text-gold transition-colors duration-700">${String(i + 1).padStart(2, '0')}</span>
                         <div class="w-8 sm:w-10 h-[1px] bg-white/30 group-hover:bg-gold/40 transition-colors duration-700"></div>
                     </div>
                 </div>
-                <div class="w-12 h-12 sm:w-16 sm:h-16 glass rounded-[18px] sm:rounded-[24px] flex items-center justify-center group-hover:bg-gold/20 group-hover:border-gold/50 transition-all duration-700 shadow-2xl border border-white/20">
-                    <i data-lucide="${s.icon}" class="w-6 h-6 sm:w-8 sm:h-8 text-gold group-hover:scale-110 transition-transform duration-700"></i>
+                <div class="w-12 h-12 sm:w-14 sm:h-14 glass rounded-[18px] sm:rounded-[22px] flex items-center justify-center group-hover:bg-gold/20 group-hover:border-gold/50 transition-all duration-700 shadow-2xl border border-white/20 shrink-0">
+                    <i data-lucide="${s.icon}" class="w-6 h-6 sm:w-7 sm:h-7 text-gold group-hover:scale-110 transition-transform duration-700"></i>
                 </div>
             </div>
 
-            <div class="space-y-3 sm:space-y-4 md:space-y-6 mb-8 sm:mb-10 md:mb-12">
-                <h3 class="text-2xl sm:text-3xl md:text-5xl group-hover:translate-x-3 transition-transform duration-700 text-white font-display italic tracking-tight leading-[0.9]">${s.title}</h3>
-                <p class="text-white text-sm sm:text-base md:text-lg leading-relaxed group-hover:text-white transition-colors duration-700 font-display italic max-w-[95%] opacity-80 group-hover:opacity-100">${s.desc}</p>
+            <div class="space-y-4 sm:space-y-5 mb-8 sm:mb-10">
+                <h3 class="text-2xl sm:text-3xl md:text-4xl group-hover:translate-x-3 transition-transform duration-700 text-white font-display italic tracking-tight leading-[0.95]">${s.title}</h3>
+                <p class="text-white text-sm sm:text-base leading-relaxed group-hover:text-white transition-colors duration-700 font-display italic max-w-[95%] opacity-80 group-hover:opacity-100">${s.desc}</p>
             </div>
             
             <div class="mt-auto">
-                <ul class="space-y-3 sm:space-y-4 mb-12 sm:mb-16 md:mb-20">
-                    ${s.features.map(f => `
-                        <li class="text-[9px] sm:text-[10px] items-center gap-3 sm:gap-5 font-accent font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] opacity-80 group-hover:opacity-100 flex transition-all duration-700 group-hover:translate-x-2 text-white">
-                            <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 border border-gold/40 rounded-sm rotate-45 group-hover:bg-gold transition-colors duration-700"></div>
-                            ${f}
-                        </li>
+                <div class="space-y-6 mb-10 sm:mb-12">
+                    ${s.sections.map(section => `
+                        <div class="space-y-3">
+                            <h4 class="text-[8px] sm:text-[9px] font-accent font-bold uppercase tracking-[0.35em] text-gold/80">${section.label}</h4>
+                            <ul class="flex flex-wrap gap-2">
+                                ${section.items.map(item => `
+                                    <li class="text-[9px] sm:text-[10px] font-accent font-bold uppercase tracking-[0.16em] leading-relaxed text-white/80 group-hover:text-white border border-white/10 bg-white/[0.04] px-3 py-2 rounded-full transition-all duration-500 group-hover:border-gold/20 group-hover:bg-white/[0.08]">
+                                        ${item}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
                     `).join('')}
-                </ul>
+                </div>
                 
                 <div class="pt-6 sm:pt-8 border-t border-white/20 flex items-center justify-between opacity-90 group-hover:opacity-100 transition-all duration-700">
                     <div class="flex flex-col gap-1">
-                        <span class="text-[8px] font-accent font-bold uppercase tracking-[0.4em] text-white/80">Service Protocol</span>
-                        <span class="text-[9px] font-accent font-bold uppercase tracking-widest text-gold opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-2 group-hover:translate-y-0">Initiate Sync</span>
+                        <span class="text-[8px] font-accent font-bold uppercase tracking-[0.4em] text-white/80">Digital Solution</span>
+                        <span class="text-[9px] font-accent font-bold uppercase tracking-widest text-gold opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-2 group-hover:translate-y-0">Start Project</span>
                     </div>
                     <div class="flex items-center gap-4">
                          <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-gold group-hover:border-gold transition-all duration-700 group-hover:rotate-45 shadow-lg group-hover:shadow-gold/20">
@@ -136,62 +269,81 @@ export const renderPortfolio = (container: HTMLElement) => {
 export const renderPricing = (container: HTMLElement) => {
   const plans = [
     {
-      id: 'plan-starter',
-      name: 'Starter',
-      price: '$5,000',
-      period: 'Bespoke Production',
-      features: ['Superior Visual Design', 'Cinematic Interaction', 'Technical Infrastructure', 'Strategy Consultation', '3 Rounds of Revisions'],
+      id: 'plan-essential',
+      name: 'Essential Plan',
+      idealFor: 'Personal brands, startups, and small businesses looking for a clean and professional online presence.',
+      included: ['Modern Responsive Website', 'Up To 5 Custom Pages', 'Premium Landing Page Design', 'Mobile Optimization', 'Contact Form Setup', 'Social Media Integration', 'Smooth Scroll Experience', 'Basic SEO Optimization', 'Fast Loading Performance', 'Clean UI Design'],
+      experience: 'Simple. Elegant. Professional.',
+      bestFor: ['Personal Portfolios', 'Startup Websites', 'Landing Pages', 'Small Business Websites'],
       accent: false,
-      tag: 'Foundation'
+      tag: 'Foundation',
+      icon: 'Gem'
     },
     {
-      id: 'plan-professional',
-      name: 'Professional',
-      price: '$12,000',
-      period: 'Elite Intensive',
-      features: ['Full Systems Architecture', 'Narrative Experience Design', 'Motion Choreography', 'Priority Support', 'Unlimited Revisions', 'Quarterly Audit'],
+      id: 'plan-growth',
+      name: 'Growth Plan',
+      idealFor: 'Businesses and brands looking for advanced features and stronger online engagement.',
+      included: ['Everything in Essential', 'Up To 10+ Pages', 'Premium UI/UX Experience', 'Dynamic Website Features', 'Admin Dashboard', 'Booking & Inquiry System', 'Database Integration', 'Advanced Animations', 'Performance Optimization', 'Interactive Components', 'SEO Structure Optimization'],
+      experience: 'Interactive. Modern. Scalable.',
+      bestFor: ['Business Websites', 'Agency Platforms', 'Service Websites', 'Creative Brands'],
       accent: true,
-      tag: 'Most Exclusive'
+      tag: 'Most Popular',
+      icon: 'Rocket'
     },
     {
-      id: 'plan-premium',
-      name: 'Premium',
-      price: '$2,500',
-      period: 'Retainer / Mo',
-      features: ['Digital Evolution', 'Systems Maintenance', 'Security Hardening', 'Priority Response', 'Growth Scaling', 'Monthly Narrative Updates'],
+      id: 'plan-elite',
+      name: 'Elite Plan',
+      idealFor: 'Brands and businesses that need immersive experiences and advanced web systems.',
+      included: ['Everything in Growth', 'Full Custom Web Application', 'Real-Time Features', 'Authentication System', 'Custom Dashboard', 'Advanced Database Architecture', 'API Integration', 'Layered Parallax Effects', 'Premium Motion Animations', 'E-Commerce Features', 'Analytics Dashboard', 'Cloud Deployment', 'Priority Technical Support'],
+      experience: 'Premium. Powerful. Future-Ready.',
+      bestFor: ['E-Commerce Platforms', 'SaaS Projects', 'Real-Time Applications', 'Enterprise-Level Websites'],
       accent: false,
-      tag: 'Sustain'
+      tag: 'Advanced',
+      icon: 'Crown'
     }
   ];
 
+  const enterpriseFeatures = ['Fully Customized Architecture', 'Advanced Backend Systems', 'High-Level Security', 'Large Scale Database Design', 'Real-Time Infrastructure', 'Business Automation', 'Dedicated Development Support', 'Ongoing Maintenance & Optimization'];
+  const enterpriseSuitableFor = ['Enterprise Platforms', 'Large Business Systems', 'Advanced Web Applications', 'High Traffic Platforms'];
+  const standouts = [
+    { icon: 'Palette', title: 'Premium Visual Design', text: 'Modern layouts with immersive user experiences.' },
+    { icon: 'Zap', title: 'High-Speed Performance', text: 'Optimized architecture for faster loading and smoother interaction.' },
+    { icon: 'Layers', title: 'Scalable Technology', text: 'Built using future-ready development practices.' },
+    { icon: 'MousePointerClick', title: 'Modern User Experience', text: 'Interactive sections, animations, and responsive layouts.' },
+    { icon: 'ShieldCheck', title: 'Secure Development', text: 'Clean, scalable, and secure code structure.' },
+    { icon: 'Headphones', title: 'Reliable Support', text: 'Continuous communication and technical assistance.' }
+  ];
+  const addOns = ['Advanced Admin Features', 'Real-Time Chat System', 'Payment Gateway Integration', 'Multi-Language Support', 'Blog System', 'Custom API Development', 'E-Commerce Features', 'SEO Growth Optimization', 'Premium Motion Effects', 'Long-Term Maintenance'];
+
   container.innerHTML = plans.map((p, i) => `
-    <div id="${p.id}" class="pricing-card group p-8 sm:p-10 md:p-12 lg:p-16 rounded-[30px] sm:rounded-[40px] md:rounded-[80px] transition-all duration-700 ${p.accent ? 'bg-white text-ink shadow-[0_60px_120px_rgba(0,0,0,0.4)] md:scale-[1.02] z-10' : 'bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20'} overflow-hidden relative flex flex-col h-full" data-index="${i}">
+    <div id="${p.id}" class="pricing-card group p-8 sm:p-10 md:p-12 rounded-[30px] sm:rounded-[40px] md:rounded-[56px] transition-all duration-700 ${p.accent ? 'bg-white text-ink shadow-[0_60px_120px_rgba(0,0,0,0.4)] lg:scale-[1.02] z-10' : 'bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20'} overflow-hidden relative flex flex-col h-full" data-index="${i}">
         <!-- Texture Overlay -->
         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03] mix-blend-overlay pointer-events-none"></div>
         
-        <div class="flex justify-between items-start mb-12 sm:mb-16 relative z-10">
+        <div class="flex justify-between items-start mb-10 sm:mb-12 relative z-10">
             <div>
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${p.accent ? 'bg-primary-accent' : 'bg-gold'} shadow-[0_0_8px_rgba(212,175,55,0.8)]"></div>
                     <span class="text-[8px] sm:text-[9px] font-accent font-bold uppercase tracking-[0.4em] ${p.accent ? 'text-primary-accent/70' : 'text-gold'}">${p.tag}</span>
                 </div>
-                <h3 class="text-4xl sm:text-5xl md:text-6xl italic font-display tracking-tighter">${p.name}</h3>
+                <h3 class="text-4xl sm:text-5xl md:text-6xl italic font-display tracking-tighter leading-[0.9]">${p.name}</h3>
             </div>
-            ${p.accent ? '<div class="w-10 h-10 sm:w-14 sm:h-14 bg-primary-accent rounded-[15px] sm:rounded-[20px] flex items-center justify-center text-white shadow-2xl rotate-3 group-hover:rotate-12 transition-transform"><i data-lucide="zap" class="w-7 h-7"></i></div>' : '<div class="text-[8px] font-accent opacity-40 group-hover:opacity-100 transition-opacity uppercase tracking-widest">ARCH_ID_0'+(i+1)+'</div>'}
+            <div class="w-12 h-12 sm:w-14 sm:h-14 ${p.accent ? 'bg-primary-accent text-white' : 'glass text-gold border-white/20'} rounded-[18px] sm:rounded-[20px] flex items-center justify-center shadow-2xl rotate-3 group-hover:rotate-12 transition-transform">
+                <i data-lucide="${p.icon}" class="w-6 h-6 sm:w-7 sm:h-7"></i>
+            </div>
         </div>
 
-        <div class="mb-10 sm:mb-12 md:mb-16 relative z-10">
-            <div class="flex items-baseline gap-3 sm:gap-4">
-                <span class="text-4xl sm:text-5xl md:text-7xl font-display font-light ${p.accent ? 'text-primary-accent' : 'text-white'}">${p.price}</span>
-                <span class="text-[9px] md:text-[10px] font-accent font-bold uppercase tracking-widest opacity-80">/ Initiation</span>
-            </div>
-            <p class="text-[8px] sm:text-[9px] font-accent font-bold uppercase tracking-[0.3em] sm:tracking-[0.4em] text-gold mt-4 sm:mt-6 border-l-2 border-gold/40 pl-4">${p.period}</p>
+        <div class="mb-8 sm:mb-10 relative z-10">
+            <p class="text-[8px] sm:text-[9px] font-accent font-bold uppercase tracking-[0.35em] text-gold mb-4">Ideal For</p>
+            <p class="text-base sm:text-lg font-display italic leading-relaxed ${p.accent ? 'text-ink/60' : 'text-white/65'}">${p.idealFor}</p>
         </div>
 
-        <div class="w-full h-px bg-current opacity-30 mb-10 sm:mb-16"></div>
+        <div class="w-full h-px bg-current opacity-30 mb-8 sm:mb-10"></div>
 
-        <ul class="space-y-4 sm:space-y-6 mb-12 sm:mb-20 flex-1 relative z-10">
-            ${p.features.map(f => `
+        <div class="mb-8 sm:mb-10 flex-1 relative z-10">
+            <p class="text-[8px] sm:text-[9px] font-accent font-bold uppercase tracking-[0.35em] text-gold mb-5">What's Included</p>
+            <ul class="space-y-3 sm:space-y-4">
+            ${p.included.map(f => `
                 <li class="flex items-start gap-4 sm:gap-6 group/item">
                     <i data-lucide="check-circle" class="w-3.5 h-3.5 sm:w-4 sm:h-4 mt-1 ${p.accent ? 'text-primary-accent' : 'text-gold'} opacity-100 transition-opacity"></i>
                     <span class="text-xs sm:text-sm font-accent tracking-wider leading-relaxed opacity-100 transition-opacity">
@@ -199,25 +351,112 @@ export const renderPricing = (container: HTMLElement) => {
                     </span>
                 </li>
             `).join('')}
-        </ul>
+            </ul>
+        </div>
+
+        <div class="relative z-10 mb-8 sm:mb-10">
+            <p class="text-[8px] sm:text-[9px] font-accent font-bold uppercase tracking-[0.35em] text-gold mb-3">Experience</p>
+            <p class="text-2xl sm:text-3xl font-display italic ${p.accent ? 'text-primary-accent' : 'text-white'}">${p.experience}</p>
+        </div>
+
+        <div class="relative z-10 mb-10 sm:mb-12">
+            <p class="text-[8px] sm:text-[9px] font-accent font-bold uppercase tracking-[0.35em] text-gold mb-4">Best For</p>
+            <div class="flex flex-wrap gap-2">
+                ${p.bestFor.map(item => `
+                    <span class="text-[8px] sm:text-[9px] font-accent font-bold uppercase tracking-[0.18em] ${p.accent ? 'text-primary-accent/70 border-primary-accent/10 bg-primary-accent/5' : 'text-white/75 border-white/10 bg-white/[0.04]'} border px-3 py-2 rounded-full">${item}</span>
+                `).join('')}
+            </div>
+        </div>
 
         <div class="mt-auto relative z-10">
-            <button class="${p.accent ? 'btn-primary w-full py-6 sm:py-8 text-[10px] sm:text-[11px] shadow-2xl shadow-primary-accent/30' : 'btn-secondary w-full border-white/30 text-white hover:bg-gold hover:text-ink hover:border-gold py-6 sm:py-8 text-[10px] sm:text-[11px] bg-white/20'} font-bold transition-all duration-700 uppercase tracking-[0.3em]">
-                <span>Initiate Allocation</span>
-            </button>
+            <a href="#contact" class="${p.accent ? 'btn-primary w-full py-6 sm:py-8 text-[10px] sm:text-[11px] shadow-2xl shadow-primary-accent/30 inline-block text-center' : 'btn-secondary w-full border-white/30 text-white hover:bg-gold hover:text-ink hover:border-gold py-6 sm:py-8 text-[10px] sm:text-[11px] bg-white/20 inline-block text-center'} font-bold transition-all duration-700 uppercase tracking-[0.3em]">
+                <span>Get Custom Quote</span>
+            </a>
             <div class="flex justify-center mt-4 sm:mt-6 gap-2 opacity-50 group-hover:opacity-80 transition-opacity">
                 ${Array(3).fill('<div class="w-1 h-1 bg-current rounded-full"></div>').join('')}
             </div>
         </div>
     </div>
-  `).join('');
+  `).join('') + `
+    <div class="pricing-card lg:col-span-3 p-8 sm:p-10 md:p-14 rounded-[30px] sm:rounded-[40px] md:rounded-[56px] bg-white text-ink shadow-[0_60px_120px_rgba(0,0,0,0.35)] relative overflow-hidden">
+        <div class="absolute inset-0 bg-mesh opacity-10"></div>
+        <div class="relative z-10 grid lg:grid-cols-12 gap-10 md:gap-14 items-start">
+            <div class="lg:col-span-5">
+                <span class="text-[9px] font-accent font-bold uppercase tracking-[0.4em] text-primary-accent/50 block mb-5">Custom Enterprise Solutions</span>
+                <h3 class="text-4xl sm:text-5xl md:text-7xl font-display italic text-primary-accent mb-6 leading-[0.9]">Tailored Development for Large-Scale Projects</h3>
+                <p class="text-lg md:text-xl font-display italic text-ink/55 leading-relaxed">Custom-built systems designed specifically around your business goals, workflow, and scalability requirements.</p>
+            </div>
+            <div class="lg:col-span-4">
+                <p class="text-[9px] font-accent font-bold uppercase tracking-[0.35em] text-gold mb-5">Enterprise Features</p>
+                <ul class="space-y-4">
+                    ${enterpriseFeatures.map(item => `
+                        <li class="flex items-start gap-4 text-sm font-accent tracking-wider leading-relaxed text-ink/70">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-primary-accent mt-0.5"></i>
+                            <span>${item}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+            </div>
+            <div class="lg:col-span-3">
+                <p class="text-[9px] font-accent font-bold uppercase tracking-[0.35em] text-gold mb-5">Suitable For</p>
+                <div class="flex flex-wrap gap-2 mb-8">
+                    ${enterpriseSuitableFor.map(item => `<span class="text-[9px] font-accent font-bold uppercase tracking-[0.18em] text-primary-accent/70 border border-primary-accent/10 bg-primary-accent/5 px-3 py-2 rounded-full">${item}</span>`).join('')}
+                </div>
+                <a href="#contact" class="btn-primary w-full py-5 text-center inline-block"><span>Schedule Consultation</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="lg:col-span-3 pt-10 md:pt-16">
+        <div class="text-center mb-10 md:mb-14">
+            <span class="text-[10px] font-accent font-bold uppercase tracking-[0.45em] text-gold/60 block mb-5">Why These Plans Stand Out</span>
+            <h3 class="text-4xl sm:text-5xl md:text-7xl font-display italic text-white">Built for Premium Growth</h3>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+            ${standouts.map(item => `
+                <div class="pricing-card p-6 md:p-8 rounded-[28px] bg-white/10 border border-white/10 backdrop-blur-md">
+                    <i data-lucide="${item.icon}" class="w-6 h-6 text-gold mb-5"></i>
+                    <h4 class="text-2xl font-display italic text-white mb-4">${item.title}</h4>
+                    <p class="text-sm font-accent leading-relaxed text-white/55">${item.text}</p>
+                </div>
+            `).join('')}
+        </div>
+    </div>
+
+    <div class="lg:col-span-3 grid lg:grid-cols-12 gap-8 md:gap-10 items-start pt-6 md:pt-10">
+        <div class="lg:col-span-4">
+            <span class="text-[10px] font-accent font-bold uppercase tracking-[0.45em] text-gold/60 block mb-5">Optional Premium Add-Ons</span>
+            <h3 class="text-4xl sm:text-5xl md:text-6xl font-display italic text-white mb-6">Upgrade Your Experience</h3>
+            <p class="text-lg font-display italic text-white/45 leading-relaxed">Add advanced features when your platform needs more depth, automation, or long-term growth support.</p>
+        </div>
+        <div class="lg:col-span-8 flex flex-wrap gap-3">
+            ${addOns.map(item => `<span class="text-[9px] sm:text-[10px] font-accent font-bold uppercase tracking-[0.2em] text-white/80 border border-white/10 bg-white/[0.05] rounded-full px-4 py-3">${item}</span>`).join('')}
+        </div>
+    </div>
+
+    <div class="pricing-card lg:col-span-3 p-8 sm:p-10 md:p-14 rounded-[30px] sm:rounded-[40px] md:rounded-[56px] bg-white/10 border border-white/10 backdrop-blur-md text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-transparent"></div>
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <span class="text-[10px] font-accent font-bold uppercase tracking-[0.45em] text-gold/70 block mb-5">Pricing CTA Section</span>
+            <h3 class="text-4xl sm:text-5xl md:text-7xl font-display italic text-white mb-6">Ready to Build Your Next Digital Experience?</h3>
+            <p class="text-lg md:text-2xl font-display italic text-white/55 leading-relaxed mb-10">Let's create something modern, powerful, and visually unforgettable together.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-10">
+                <a href="#contact" class="btn-primary py-5 text-center"><span>Get Custom Quote</span></a>
+                <a href="#contact" class="btn-secondary border-white/30 text-white hover:bg-gold hover:text-ink hover:border-gold py-5 bg-white/20 text-center"><span>Schedule Consultation</span></a>
+                <a href="#contact" class="btn-secondary border-white/30 text-white hover:bg-gold hover:text-ink hover:border-gold py-5 bg-white/20 text-center"><span>Start Your Project</span></a>
+            </div>
+            <p class="text-xl md:text-3xl font-display italic text-gold mb-4">Modern design. Powerful technology. Exceptional user experience.</p>
+            <p class="text-sm md:text-base font-accent uppercase tracking-[0.25em] text-white/45">Crafted with creativity and precision by Deinxel Web Service.</p>
+        </div>
+    </div>
+  `;
 };
 
 export const renderTestimonials = (container: HTMLElement) => {
   const reviews = [
-    { name: 'Marcus Chen', role: 'Art Director, Ethereal', text: 'Deinxel transformed our digital presence into a cinematic journey. Their attention to detail is uncompromising.' },
-    { name: 'Sarah Jenkins', role: 'Founder, Horizon', text: 'Beyond aesthetics, the technical architecture Deinxel delivered saw our conversions skyrocket within weeks.' },
-    { name: 'Elena Rossi', role: 'CEO, Velvet Luxury', text: 'A studio that truly understands the intersection of luxury and technology. Superior craftsmanship.' }
+    { name: 'Marcus Chen', role: 'Art Director, Ethereal', text: 'Professional, creative, and highly skilled. The final website exceeded expectations with smooth animations and premium design quality.' },
+    { name: 'Sarah Jenkins', role: 'Founder, Horizon', text: 'Excellent communication and fast delivery. The admin dashboard and backend system were extremely well built.' },
+    { name: 'Elena Rossi', role: 'CEO, Velvet Luxury', text: 'Modern UI, responsive design, and strong technical implementation. Highly recommended for professional web solutions.' }
   ];
 
   container.innerHTML = reviews.map((r, i) => `

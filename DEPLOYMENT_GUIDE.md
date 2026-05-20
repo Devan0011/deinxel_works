@@ -24,7 +24,7 @@ The application relies on Supabase for data storage, authentication, and file ma
 
 ### Storage
 1. Go to **Storage**.
-2. Create a public bucket named `assets`.
+2. Create a public bucket named `clients`.
 3. Ensure the security policies allow users to upload and view files (these should be created by the SQL script).
 
 ## 2. Environment Variables
@@ -35,6 +35,8 @@ Configure your deployment platform (e.g., Vercel, Netlify, Cloud Run) with the f
 |----------|-------------|
 | `VITE_SUPABASE_URL` | Your Supabase Project URL |
 | `VITE_SUPABASE_ANON_KEY` | Your Supabase Anonymous Key |
+| `SUPABASE_URL` | Also supported for local/server deployments |
+| `SUPABASE_ANON_KEY` | Also supported for local/server deployments |
 
 ## 3. Deploying to Hosting Platforms
 

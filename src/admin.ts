@@ -7,6 +7,34 @@ function refreshIcons() {
     createIcons({ icons });
 }
 
+function escapeHtml(value: unknown) {
+    return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+function formatDate(value?: string | null) {
+    if (!value) return 'Timeline captured in project brief';
+    const parsed = new Date(value);
+    return Number.isNaN(parsed.getTime()) ? escapeHtml(value) : parsed.toLocaleDateString();
+}
+
+function statusLabel(value?: string | null) {
+    return String(value || 'pending').replace(/_/g, ' ');
+}
+
+async function updateBookingStatus(bookingId: string, status: 'approved' | 'rejected' | 'completed') {
+    const { error } = await supabase.from('bookings').update({ status }).eq('id', bookingId);
+    if (error) {
+        alert('Status update failed: ' + error.message);
+        return false;
+    }
+    return true;
+}
+
 function initLoader() {
     const tl = gsap.timeline();
 
@@ -28,98 +56,67 @@ async function initAdminView() {
     const inquiriesList = document.getElementById('admin-inquiries-list')!;
     const bookingsList = document.getElementById('admin-bookings-list')!;
 
-    try {
-        // Fetch Inquiries
-        const { data: inquiries, error: inqError } = await supabase.from('contact_messages').select('*').order('created_at', { ascending: false });
-        
-        if (inqError) throw inqError;
+    const [{ data: inquiries, error: inqError }, { data: bookings, error: bookError }] = await Promise.all([
+        supabase.from('contact_messages').select('*').order('created_at', { ascending: false }),
+        supabase.from('bookings').select('*').order('created_at', { ascending: false })
+    ]);
 
-        if (inquiries && inquiries.length > 0) {
-            inquiriesList.innerHTML = inquiries.map(m => `
-                <div class="p-8 bg-primary-accent/5 rounded-[30px] border border-primary-accent/5 space-y-4">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h4 class="font-display text-xl text-primary-accent">${m.name}</h4>
-                            <p class="text-[10px] font-accent uppercase tracking-widest opacity-40">${m.email}</p>
-                        </div>
-                        <span class="text-[9px] font-accent font-bold text-gold opacity-60 uppercase">${new Date(m.created_at).toLocaleDateString()}</span>
-                    </div>
-                    <div class="flex gap-4">
-                        <span class="text-[8px] font-accent font-bold px-3 py-1 bg-primary-accent/10 rounded-full text-primary-accent uppercase tracking-widest">${m.service}</span>
-                        <span class="text-[8px] font-accent font-bold px-3 py-1 bg-gold/10 rounded-full text-gold uppercase tracking-widest">${m.budget}</span>
-                    </div>
-                    <p class="text-[12px] font-display italic opacity-60 leading-relaxed">${m.message}</p>
-                </div>
-            `).join('');
-        } else {
-            inquiriesList.innerHTML = '<p class="text-[10px] font-accent uppercase tracking-widest opacity-40">No inquiries found.</p>';
-        }
-
-        // Fetch Bookings
-        const { data: bookings, error: bookError } = await supabase.from('bookings').select('*').order('created_at', { ascending: false });
-        
-        if (bookError) throw bookError;
-
-        if (bookings && bookings.length > 0) {
-            bookingsList.innerHTML = bookings.map(b => `
-                <div class="p-8 bg-primary-accent/5 rounded-[30px] border border-primary-accent/5 space-y-4">
-                    <div class="flex justify-between items-center">
-                        <h4 class="font-display text-xl text-primary-accent uppercase tracking-tighter">${b.service_type}</h4>
-                        <span class="text-[10px] font-accent font-bold text-gold uppercase tracking-widest">${b.status}</span>
-                    </div>
-                    <div class="flex items-center gap-4 py-3 border-y border-primary-accent/5">
-                        <i data-lucide="calendar" class="w-4 h-4 opacity-40"></i>
-                        <span class="text-[10px] font-accent font-bold uppercase tracking-[0.2em] opacity-60">Scheduled: ${new Date(b.meeting_date).toLocaleDateString()}</span>
-                    </div>
-                    <p class="text-[12px] font-display italic opacity-60 leading-relaxed">${b.requirements || 'No specific requirements articulated.'}</p>
-                    <div class="flex gap-4 pt-4">
-                        <button class="flex-1 py-3 glass rounded-2xl text-[9px] font-accent font-bold uppercase tracking-widest text-primary-accent hover:bg-primary-accent hover:text-white transition-all">Approve</button>
-                        <button class="flex-1 py-3 glass rounded-2xl text-[9px] font-accent font-bold uppercase tracking-widest text-red-600 hover:bg-red-500 hover:text-white transition-all">Reject</button>
-                    </div>
-                </div>
-            `).join('');
-        } else {
-            bookingsList.innerHTML = '<p class="text-[10px] font-accent uppercase tracking-widest opacity-40">No session requests found.</p>';
-        }
-
-    } catch (err: any) {
-        console.error("Database connection error:", err);
-        // Fallback mock data since the user said the database is not working
-        inquiriesList.innerHTML = `
+    if (inqError) {
+        inquiriesList.innerHTML = `<p class="text-[10px] font-accent uppercase tracking-widest opacity-40">Unable to load inquiries: ${escapeHtml(inqError.message)}</p>`;
+    } else if (inquiries && inquiries.length > 0) {
+        inquiriesList.innerHTML = inquiries.map(m => `
             <div class="p-8 bg-primary-accent/5 rounded-[30px] border border-primary-accent/5 space-y-4">
                 <div class="flex justify-between items-start">
                     <div>
-                        <h4 class="font-display text-xl text-primary-accent">John Doe (Mock)</h4>
-                        <p class="text-[10px] font-accent uppercase tracking-widest opacity-40">john@example.com</p>
+                        <h4 class="font-display text-xl text-primary-accent">${escapeHtml(m.name)}</h4>
+                        <p class="text-[10px] font-accent uppercase tracking-widest opacity-40">${escapeHtml(m.email)}</p>
                     </div>
-                    <span class="text-[9px] font-accent font-bold text-gold opacity-60 uppercase">${new Date().toLocaleDateString()}</span>
+                    <span class="text-[9px] font-accent font-bold text-gold opacity-60 uppercase">${formatDate(m.created_at)}</span>
                 </div>
                 <div class="flex gap-4">
-                    <span class="text-[8px] font-accent font-bold px-3 py-1 bg-primary-accent/10 rounded-full text-primary-accent uppercase tracking-widest">Web Design</span>
-                    <span class="text-[8px] font-accent font-bold px-3 py-1 bg-gold/10 rounded-full text-gold uppercase tracking-widest">$10k+</span>
+                    <span class="text-[8px] font-accent font-bold px-3 py-1 bg-primary-accent/10 rounded-full text-primary-accent uppercase tracking-widest">${escapeHtml(m.service || 'General')}</span>
+                    <span class="text-[8px] font-accent font-bold px-3 py-1 bg-gold/10 rounded-full text-gold uppercase tracking-widest">${escapeHtml(m.budget || 'Open')}</span>
                 </div>
-                <p class="text-[12px] font-display italic opacity-60 leading-relaxed">This is mock data because the database connection failed. I am looking forward to working with you.</p>
+                <p class="text-[12px] font-display italic opacity-60 leading-relaxed whitespace-pre-line">${escapeHtml(m.message)}</p>
             </div>
-        `;
+        `).join('');
+    } else {
+        inquiriesList.innerHTML = '<p class="text-[10px] font-accent uppercase tracking-widest opacity-40">No inquiries found.</p>';
+    }
 
-        bookingsList.innerHTML = `
+    if (bookError) {
+        bookingsList.innerHTML = `<p class="text-[10px] font-accent uppercase tracking-widest opacity-40">Unable to load session requests: ${escapeHtml(bookError.message)}</p>`;
+    } else if (bookings && bookings.length > 0) {
+        bookingsList.innerHTML = bookings.map(b => `
             <div class="p-8 bg-primary-accent/5 rounded-[30px] border border-primary-accent/5 space-y-4">
                 <div class="flex justify-between items-center">
-                    <h4 class="font-display text-xl text-primary-accent uppercase tracking-tighter">Immersive UI Experience</h4>
-                    <span class="text-[10px] font-accent font-bold text-gold uppercase tracking-widest">pending</span>
+                    <h4 class="font-display text-xl text-primary-accent uppercase tracking-tighter">${escapeHtml(b.service_type || b.project_type || 'Custom Project')}</h4>
+                    <span class="text-[10px] font-accent font-bold text-gold uppercase tracking-widest">${escapeHtml(statusLabel(b.status))}</span>
                 </div>
                 <div class="flex items-center gap-4 py-3 border-y border-primary-accent/5">
                     <i data-lucide="calendar" class="w-4 h-4 opacity-40"></i>
-                    <span class="text-[10px] font-accent font-bold uppercase tracking-[0.2em] opacity-60">Scheduled: ${new Date().toLocaleDateString()}</span>
+                    <span class="text-[10px] font-accent font-bold uppercase tracking-[0.2em] opacity-60">${b.meeting_date ? `Scheduled: ${formatDate(b.meeting_date)}` : escapeHtml(b.timeline || 'Timeline captured in project brief')}</span>
                 </div>
-                <p class="text-[12px] font-display italic opacity-60 leading-relaxed">Mock Requirement: I need a complete revamp of my application interface.</p>
+                <p class="text-[12px] font-display italic opacity-60 leading-relaxed whitespace-pre-line">${escapeHtml(b.requirements || 'No specific requirements articulated.')}</p>
                 <div class="flex gap-4 pt-4">
-                    <button class="flex-1 py-3 glass rounded-2xl text-[9px] font-accent font-bold uppercase tracking-widest text-primary-accent hover:bg-primary-accent hover:text-white transition-all">Approve</button>
-                    <button class="flex-1 py-3 glass rounded-2xl text-[9px] font-accent font-bold uppercase tracking-widest text-red-600 hover:bg-red-500 hover:text-white transition-all">Reject</button>
+                    <button data-booking-action="approved" data-booking-id="${b.id}" class="flex-1 py-3 glass rounded-2xl text-[9px] font-accent font-bold uppercase tracking-widest text-primary-accent hover:bg-primary-accent hover:text-white transition-all">Approve</button>
+                    <button data-booking-action="rejected" data-booking-id="${b.id}" class="flex-1 py-3 glass rounded-2xl text-[9px] font-accent font-bold uppercase tracking-widest text-red-600 hover:bg-red-500 hover:text-white transition-all">Reject</button>
                 </div>
             </div>
-        `;
+        `).join('');
+    } else {
+        bookingsList.innerHTML = '<p class="text-[10px] font-accent uppercase tracking-widest opacity-40">No session requests found.</p>';
     }
+
+    bookingsList.onclick = async (event) => {
+        const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-booking-action]');
+        if (!button) return;
+
+        button.disabled = true;
+        const updated = await updateBookingStatus(button.dataset.bookingId || '', button.dataset.bookingAction as 'approved' | 'rejected');
+        button.disabled = false;
+        if (updated) initAdminView();
+    };
 
     refreshIcons();
 }
