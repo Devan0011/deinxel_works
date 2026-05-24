@@ -20,6 +20,7 @@
       <nav class="max-w-7xl mx-auto flex items-center justify-between glass px-5 sm:px-8 py-3 rounded-full shadow-lg">
         <a href="/" class="text-xl sm:text-2xl font-display font-bold text-primary-accent italic tracking-tighter shrink-0">Deinxel</a>
         <div class="flex items-center gap-3 sm:gap-6">
+          <button id="admin-logout-btn" class="hidden text-[10px] font-accent font-bold uppercase tracking-[0.2em] text-red-600/70 hover:text-red-600 transition-colors">Sign Out</button>
           <a href="/" class="btn-primary py-2.5 px-6 text-[10px] whitespace-nowrap">
             <span>Back to Site</span>
           </a>
@@ -28,13 +29,36 @@
     </header>
 
     <main class="pt-32 pb-24 px-6 max-w-7xl mx-auto" style="opacity: 0" id="main-content">
-        <div class="space-y-12 sm:space-y-20">
+        <div id="admin-auth-view" class="hidden min-h-[70vh] items-center justify-center">
+            <div class="glass p-8 sm:p-12 md:p-16 rounded-[30px] sm:rounded-[40px] md:rounded-[70px] border-white shadow-2xl max-w-xl w-full text-center space-y-10">
+                <div class="space-y-4">
+                    <span class="text-[9px] sm:text-[10px] font-accent font-bold uppercase tracking-[0.5em] text-primary-accent opacity-40 block">Admin Access</span>
+                    <h1 class="text-4xl sm:text-6xl italic font-display tracking-tighter">Agency <span class="text-primary-accent">Login</span></h1>
+                    <p id="admin-auth-message" class="text-[10px] font-accent uppercase tracking-[0.25em] opacity-40 leading-relaxed">Sign in with an admin account to manage live inquiries and session requests.</p>
+                </div>
+                <form id="admin-login-form" class="space-y-8 text-left">
+                    <div class="space-y-4">
+                        <label class="text-[9px] font-accent font-bold uppercase tracking-[0.35em] opacity-40 ml-4">Admin Email</label>
+                        <input type="email" id="admin-email" required placeholder="admin@domain.com" class="w-full glass p-5 sm:p-8 rounded-[20px] sm:rounded-[32px] outline-none focus:border-primary-accent transition-all font-display text-lg sm:text-2xl shadow-inner px-6 sm:px-10">
+                    </div>
+                    <div class="space-y-4">
+                        <label class="text-[9px] font-accent font-bold uppercase tracking-[0.35em] opacity-40 ml-4">Password</label>
+                        <input type="password" id="admin-password" required placeholder="Password" class="w-full glass p-5 sm:p-8 rounded-[20px] sm:rounded-[32px] outline-none focus:border-primary-accent transition-all font-display text-lg sm:text-2xl shadow-inner px-6 sm:px-10">
+                    </div>
+                    <button type="submit" class="btn-primary w-full py-5 sm:py-8 rounded-[20px] sm:rounded-[32px] shadow-2xl shadow-primary-accent/30">
+                        <span>Open Admin Panel</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="admin-dashboard-view" class="hidden space-y-12 sm:space-y-20">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 sm:gap-8">
                 <div>
                     <span class="text-[9px] sm:text-[10px] font-accent font-bold uppercase tracking-[0.5em] text-gold mb-3 sm:mb-4 block">Central Command</span>
                     <h2 class="text-4xl sm:text-6xl md:text-8xl italic font-display tracking-tighter">Agency <span class="text-primary-accent">Intelligence</span></h2>
                 </div>
-                <div class="glass py-3 sm:py-4 px-6 sm:px-10 rounded-full text-[8px] sm:text-[10px] font-accent font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-gold border-gold/10 whitespace-nowrap w-fit">Status: Overseer</div>
+                <div id="admin-status-badge" class="glass py-3 sm:py-4 px-6 sm:px-10 rounded-full text-[8px] sm:text-[10px] font-accent font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-gold border-gold/10 whitespace-nowrap w-fit">Status: Connected</div>
             </div>
 
             <div class="grid lg:grid-cols-2 gap-8 md:gap-10">

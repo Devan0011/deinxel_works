@@ -166,6 +166,28 @@ alter table public.orders enable row level security;
 alter table public.assets enable row level security;
 alter table public.chat_messages enable row level security;
 
+-- Realtime publication for live admin dashboards.
+do $$
+begin
+  alter publication supabase_realtime add table public.contact_messages;
+exception
+  when duplicate_object or undefined_object then null;
+end $$;
+
+do $$
+begin
+  alter publication supabase_realtime add table public.bookings;
+exception
+  when duplicate_object or undefined_object then null;
+end $$;
+
+do $$
+begin
+  alter publication supabase_realtime add table public.chat_messages;
+exception
+  when duplicate_object or undefined_object then null;
+end $$;
+
 -- Reset policies for repeatable setup.
 drop policy if exists "Profiles are readable by owner or admins" on public.profiles;
 drop policy if exists "Profiles are insertable by owner" on public.profiles;

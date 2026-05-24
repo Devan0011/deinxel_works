@@ -7,6 +7,7 @@ import { initLenis } from './lib/lenis.ts';
 import { renderServices, renderPortfolio, renderPricing, renderTestimonials } from './lib/ui.ts';
 import { supabase } from './lib/supabase.ts';
 import { fetchMessages, sendMessage, subscribeToMessages } from './lib/chat.ts';
+import { fetchAdminSubmissions, submitBookingRequest, submitContactMessage, subscribeToAdminSubmissions, updateBookingStatus } from './lib/submissions.ts';
 
 import { fetchFiles, getFileUrl, uploadFile } from './lib/storage.ts';
 
@@ -19,6 +20,7 @@ const lenis = initLenis();
 let currentUser: any = null;
 let userProfile: any = null;
 let chatSubscription: any = null;
+let adminSubscription: any = null;
 
 function refreshIcons() {
     createIcons({ icons });
@@ -41,15 +43,6 @@ function formatDate(value?: string | null) {
 
 function statusLabel(value?: string | null) {
     return String(value || 'pending').replace(/_/g, ' ');
-}
-
-async function updateBookingStatus(bookingId: string, status: 'approved' | 'rejected' | 'completed') {
-    const { error } = await supabase.from('bookings').update({ status }).eq('id', bookingId);
-    if (error) {
-        alert('Status update failed: ' + error.message);
-        return false;
-    }
-    return true;
 }
 
 function initLoader() {
@@ -427,6 +420,12 @@ function setupPortalFunctions() {
     const authBtn = document.getElementById('auth-btn')!;
     const closeBtn = document.getElementById('close-portal')!;
     const loginForm = document.getElementById('login-form') as HTMLFormElement;
+    const authPanelTitle = document.getElementById('auth-panel-title')!;
+    const signupNameField = document.getElementById('signup-name-field')!;
+    const signupNameInput = document.getElementById('signup-name') as HTMLInputElement;
+    const authSubmitLabel = document.getElementById('auth-submit-label')!;
+    const authModeToggle = document.getElementById('auth-mode-toggle') as HTMLButtonElement;
+    const authHelperCopy = document.getElementById('auth-helper-copy')!;
     const authView = document.getElementById('auth-view')!;
     const dashboardView = document.getElementById('dashboard-view')!;
     const ordersView = document.getElementById('orders-view')!;
@@ -434,6 +433,19 @@ function setupPortalFunctions() {
     const adminView = document.getElementById('admin-view')!;
     const settingsView = document.getElementById('settings-view')!;
     const logoutBtn = document.getElementById('logout-btn')!;
+    let authMode: 'login' | 'signup' = 'login';
+
+    const setAuthMode = (mode: 'login' | 'signup') => {
+        authMode = mode;
+        const isSignup = authMode === 'signup';
+
+        signupNameField.classList.toggle('hidden', !isSignup);
+        signupNameInput.required = isSignup;
+        authPanelTitle.innerHTML = isSignup ? 'Client <span class="text-primary-accent">Sign Up</span>' : 'Client <span class="text-primary-accent">Entry</span>';
+        authSubmitLabel.textContent = isSignup ? 'Create Client Access' : 'Initiate Synchronisation';
+        authModeToggle.textContent = isSignup ? 'Already Have Access?' : 'Create Client Access';
+        authHelperCopy.textContent = isSignup ? 'Create your client portal credentials' : 'Use your client credentials or create new access';
+    };
 
     const showOverlay = () => {
         overlay.classList.remove('hidden');
@@ -441,6 +453,7 @@ function setupPortalFunctions() {
         if (currentUser) {
             showPortalView('dashboard');
         } else {
+            setAuthMode('login');
             showPortalView('auth');
         }
     };
@@ -507,10 +520,50 @@ function setupPortalFunctions() {
         });
     });
 
+    authModeToggle.addEventListener('click', () => {
+        setAuthMode(authMode === 'login' ? 'signup' : 'login');
+    });
+
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const email = (document.getElementById('login-email') as HTMLInputElement).value;
+        const email = (document.getElementById('login-email') as HTMLInputElement).value.trim();
         const password = (document.getElementById('login-password') as HTMLInputElement).value;
+
+        if (authMode === 'signup') {
+            const fullName = signupNameInput.value.trim();
+            if (!fullName || !email || password.length < 6) {
+                alert('Please enter your name, email, and a password with at least 6 characters.');
+                return;
+            }
+
+            const { data, error } = await supabase.auth.signUp({
+                email,
+                password,
+                options: {
+                    data: { full_name: fullName }
+                }
+            });
+
+            if (error) {
+                alert('Sign Up Failed: ' + error.message);
+                return;
+            }
+
+            if (data.user && data.session) {
+                currentUser = data.user;
+                await syncUserProfile(currentUser);
+                updateHeaderAuth(currentUser);
+                loginForm.reset();
+                setAuthMode('login');
+                showPortalView('dashboard');
+                return;
+            }
+
+            alert('Client access created. Please confirm your email if Supabase email confirmation is enabled, then log in.');
+            loginForm.reset();
+            setAuthMode('login');
+            return;
+        }
 
         const { data, error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) {
@@ -519,6 +572,7 @@ function setupPortalFunctions() {
             currentUser = data.user;
             await syncUserProfile(currentUser);
             updateHeaderAuth(currentUser);
+            loginForm.reset();
             showPortalView('dashboard');
         }
     });
@@ -528,14 +582,22 @@ function setupPortalFunctions() {
             await supabase.removeChannel(chatSubscription);
             chatSubscription = null;
         }
+        if (adminSubscription) {
+            await supabase.removeChannel(adminSubscription);
+            adminSubscription = null;
+        }
         await supabase.auth.signOut();
         currentUser = null;
         userProfile = null;
         document.getElementById('admin-nav-btn')?.classList.add('hidden');
         authBtn.innerText = 'Access';
+        loginForm.reset();
+        setAuthMode('login');
         showPortalView('auth');
         authView.classList.remove('hidden');
     });
+
+    setAuthMode('login');
 }
 
 async function syncUserProfile(user: any) {
@@ -661,10 +723,13 @@ async function initAdminView() {
     const inquiriesList = document.getElementById('admin-inquiries-list')!;
     const bookingsList = document.getElementById('admin-bookings-list')!;
 
-    const [{ data: inquiries, error: inquiriesError }, { data: bookings, error: bookingsError }] = await Promise.all([
-        supabase.from('contact_messages').select('*').order('created_at', { ascending: false }),
-        supabase.from('bookings').select('*').order('created_at', { ascending: false })
-    ]);
+    if (userProfile?.role !== 'admin') {
+        inquiriesList.innerHTML = '<p class="text-[9px] sm:text-[10px] font-accent uppercase tracking-widest opacity-40">Admin access is required to view inquiries.</p>';
+        bookingsList.innerHTML = '<p class="text-[9px] sm:text-[10px] font-accent uppercase tracking-widest opacity-40">Admin access is required to view session requests.</p>';
+        return;
+    }
+
+    const { inquiries, inquiriesError, bookings, bookingsError } = await fetchAdminSubmissions();
 
     if (inquiriesError) {
         inquiriesList.innerHTML = `<p class="text-[9px] sm:text-[10px] font-accent uppercase tracking-widest opacity-40">Unable to load inquiries: ${escapeHtml(inquiriesError.message)}</p>`;
@@ -706,6 +771,7 @@ async function initAdminView() {
                 <div class="flex gap-4 pt-4">
                     <button data-booking-action="approved" data-booking-id="${b.id}" class="flex-1 py-3 glass rounded-2xl text-[9px] font-accent font-bold uppercase tracking-widest text-primary-accent hover:bg-primary-accent hover:text-white transition-all">Approve</button>
                     <button data-booking-action="rejected" data-booking-id="${b.id}" class="flex-1 py-3 glass rounded-2xl text-[9px] font-accent font-bold uppercase tracking-widest text-red-600 hover:bg-red-500 hover:text-white transition-all">Reject</button>
+                    <button data-booking-action="completed" data-booking-id="${b.id}" class="flex-1 py-3 glass rounded-2xl text-[9px] font-accent font-bold uppercase tracking-widest text-gold hover:bg-gold hover:text-white transition-all">Complete</button>
                 </div>
             </div>
         `).join('');
@@ -718,10 +784,18 @@ async function initAdminView() {
         if (!button) return;
 
         button.disabled = true;
-        const updated = await updateBookingStatus(button.dataset.bookingId || '', button.dataset.bookingAction as 'approved' | 'rejected');
+        const { error } = await updateBookingStatus(button.dataset.bookingId || '', button.dataset.bookingAction as 'approved' | 'rejected' | 'completed');
         button.disabled = false;
-        if (updated) initAdminView();
+        if (error) {
+            alert('Status update failed: ' + error.message);
+        } else {
+            initAdminView();
+        }
     };
+
+    if (!adminSubscription) {
+        adminSubscription = subscribeToAdminSubmissions(() => initAdminView());
+    }
 
     refreshIcons();
 }
@@ -910,13 +984,16 @@ function setupGlobalForms() {
     contactForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(contactForm);
-        const { error } = await supabase.from('contact_messages').insert([{
-            name: formData.get('name'),
-            email: formData.get('email'),
-            service: formData.get('service'),
-            budget: formData.get('budget'),
-            message: formData.get('message')
-        }]);
+        const submitButtons = Array.from(contactForm.querySelectorAll<HTMLButtonElement>('button[type="submit"]'));
+        submitButtons.forEach(button => button.disabled = true);
+        const { error } = await submitContactMessage({
+            name: String(formData.get('name') || '').trim(),
+            email: String(formData.get('email') || '').trim(),
+            service: String(formData.get('service') || '').trim(),
+            budget: String(formData.get('budget') || '').trim(),
+            message: String(formData.get('message') || '').trim()
+        });
+        submitButtons.forEach(button => button.disabled = false);
 
         if (error) {
             alert('Communication Interrupted: ' + error.message);
@@ -931,6 +1008,7 @@ function setupGlobalForms() {
     bookingForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(bookingForm);
+        const submitButtons = Array.from(bookingForm.querySelectorAll<HTMLButtonElement>('button[type="submit"]'));
         const getField = (name: string) => String(formData.get(name) || '').trim();
         const projectType = getField('project_type') || 'Custom Project';
         const email = getField('email');
@@ -963,23 +1041,15 @@ function setupGlobalForms() {
             project_type: projectType,
             budget: getField('budget'),
             timeline: getField('timeline'),
-            requirements: inquiryDetails,
-            status: 'pending'
+            requirements: inquiryDetails
         };
 
-        const [{ error }, { error: contactError }] = await Promise.all([
-            supabase.from('bookings').insert([bookingPayload]),
-            supabase.from('contact_messages').insert([{
-                name: getField('name'),
-                email,
-                service: projectType,
-                budget: getField('budget'),
-                message: inquiryDetails
-            }])
-        ]);
+        submitButtons.forEach(button => button.disabled = true);
+        const { bookingError, contactError } = await submitBookingRequest(bookingPayload);
+        submitButtons.forEach(button => button.disabled = false);
 
-        if (error) {
-            alert('Booking Error: ' + error.message);
+        if (bookingError) {
+            alert('Booking Error: ' + bookingError.message);
         } else if (contactError) {
             alert('Your session request was received, but inquiry mirroring failed: ' + contactError.message);
             bookingForm.reset();

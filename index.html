@@ -30,7 +30,7 @@
           <a href="/admin.html" class="hover:text-gold transition-colors magnetic text-gold"><span>Admin</span></a>
         </div>
         <div class="flex items-center gap-3 sm:gap-6">
-          <button id="auth-btn" class="hidden sm:block text-[10px] font-accent font-bold uppercase tracking-[0.2em] text-primary-accent/60 hover:text-primary-accent transition-colors">Access</button>
+          <button id="auth-btn" class="block text-[10px] font-accent font-bold uppercase tracking-[0.2em] text-primary-accent/60 hover:text-primary-accent transition-colors">Access</button>
           <a href="#booking" class="btn-primary py-2.5 px-6 text-[10px] whitespace-nowrap">
             <span>Book Call</span>
           </a>
@@ -265,11 +265,11 @@
                         <div class="grid md:grid-cols-2 gap-8 md:gap-12">
                             <div class="space-y-4 md:space-y-5">
                                 <label class="text-[9px] md:text-[10px] font-accent font-bold uppercase tracking-[0.4em] text-primary-accent opacity-40">Full Name</label>
-                                <input type="text" name="name" placeholder="Enter your name" class="w-full bg-transparent border-b border-primary-accent/10 py-4 md:py-5 outline-none focus:border-gold transition-colors font-display text-xl md:text-2xl text-ink placeholder:text-ink/25">
+                                <input type="text" name="name" placeholder="Enter your name" required class="w-full bg-transparent border-b border-primary-accent/10 py-4 md:py-5 outline-none focus:border-gold transition-colors font-display text-xl md:text-2xl text-ink placeholder:text-ink/25">
                             </div>
                             <div class="space-y-4 md:space-y-5">
                                 <label class="text-[9px] md:text-[10px] font-accent font-bold uppercase tracking-[0.4em] text-primary-accent opacity-40">Email Address</label>
-                                <input type="email" name="email" placeholder="Enter your email" class="w-full bg-transparent border-b border-primary-accent/10 py-4 md:py-5 outline-none focus:border-gold transition-colors font-display text-xl md:text-2xl text-ink placeholder:text-ink/25">
+                                <input type="email" name="email" placeholder="Enter your email" required class="w-full bg-transparent border-b border-primary-accent/10 py-4 md:py-5 outline-none focus:border-gold transition-colors font-display text-xl md:text-2xl text-ink placeholder:text-ink/25">
                             </div>
                             <div class="space-y-4 md:space-y-5">
                                 <label class="text-[9px] md:text-[10px] font-accent font-bold uppercase tracking-[0.4em] text-primary-accent opacity-40">Phone Number</label>
@@ -306,7 +306,7 @@
                             </div>
                             <div class="space-y-4 md:space-y-5 md:col-span-2">
                                 <label class="text-[9px] md:text-[10px] font-accent font-bold uppercase tracking-[0.4em] text-primary-accent opacity-40">Project Details</label>
-                                <textarea name="project_details" rows="4" placeholder="Tell me about your project, features, and goals" class="w-full bg-transparent border-b border-primary-accent/10 py-4 md:py-5 outline-none focus:border-gold transition-colors font-display text-xl md:text-2xl text-ink min-h-36 resize-none placeholder:text-ink/25"></textarea>
+                                <textarea name="project_details" rows="4" placeholder="Tell me about your project, features, and goals" required class="w-full bg-transparent border-b border-primary-accent/10 py-4 md:py-5 outline-none focus:border-gold transition-colors font-display text-xl md:text-2xl text-ink min-h-36 resize-none placeholder:text-ink/25"></textarea>
                             </div>
                             <div class="space-y-4 md:space-y-5 md:col-span-2">
                                 <label class="text-[9px] md:text-[10px] font-accent font-bold uppercase tracking-[0.4em] text-primary-accent opacity-40">Timeline</label>
@@ -658,9 +658,13 @@
                         <div class="max-w-xl w-full text-center space-y-12 md:space-y-16 px-4">
                             <div class="space-y-4 md:space-y-6">
                                 <span class="text-[9px] md:text-[10px] font-accent font-bold uppercase tracking-[0.6em] text-primary-accent opacity-40 block">Authentication Protocol</span>
-                                <h3 class="text-5xl md:text-7xl italic font-display tracking-tighter">Client <span class="text-primary-accent">Entry</span></h3>
+                                <h3 id="auth-panel-title" class="text-5xl md:text-7xl italic font-display tracking-tighter">Client <span class="text-primary-accent">Entry</span></h3>
                             </div>
                             <form id="login-form" class="space-y-8 md:space-y-10">
+                                <div id="signup-name-field" class="space-y-4 sm:space-y-6 text-left hidden">
+                                    <label class="text-[9px] md:text-[10px] font-accent font-bold uppercase tracking-[0.4em] opacity-40 ml-4">Client Name</label>
+                                    <input type="text" id="signup-name" placeholder="Your full name" class="w-full glass p-5 sm:p-10 rounded-[20px] sm:rounded-[40px] outline-none focus:border-primary-accent transition-all font-display text-lg sm:text-2xl shadow-inner px-6 sm:px-10">
+                                </div>
                                 <div class="space-y-4 sm:space-y-6 text-left">
                                     <label class="text-[9px] md:text-[10px] font-accent font-bold uppercase tracking-[0.4em] opacity-40 ml-4">Access Key</label>
                                     <input type="email" id="login-email" placeholder="email@address.com" class="w-full glass p-5 sm:p-10 rounded-[20px] sm:rounded-[40px] outline-none focus:border-primary-accent transition-all font-display text-lg sm:text-2xl shadow-inner px-6 sm:px-10" required>
@@ -670,9 +674,10 @@
                                     <input type="password" id="login-password" placeholder="••••••••" class="w-full glass p-5 sm:p-10 rounded-[20px] sm:rounded-[40px] outline-none focus:border-primary-accent transition-all font-display text-lg sm:text-2xl shadow-inner px-6 sm:px-10" required>
                                 </div>
                                 <button type="submit" class="btn-primary w-full py-5 sm:py-10 rounded-[20px] sm:rounded-[40px] shadow-2xl shadow-primary-accent/40">
-                                    <span>Initiate Synchronisation</span>
+                                    <span id="auth-submit-label">Initiate Synchronisation</span>
                                 </button>
-                                <p class="text-[9px] md:text-[10px] font-accent font-bold uppercase tracking-[0.3em] opacity-30 mt-8 md:mt-12">Contact Agency Lead for encrypted credentials</p>
+                                <button type="button" id="auth-mode-toggle" class="text-[9px] md:text-[10px] font-accent font-bold uppercase tracking-[0.3em] text-primary-accent opacity-50 hover:opacity-100 transition-opacity underline decoration-primary-accent/20">Create Client Access</button>
+                                <p id="auth-helper-copy" class="text-[9px] md:text-[10px] font-accent font-bold uppercase tracking-[0.3em] opacity-30 mt-8 md:mt-12">Use your client credentials or create new access</p>
                             </form>
                         </div>
                     </div>
