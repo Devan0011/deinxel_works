@@ -4,6 +4,7 @@ import type { RealtimeChannel, User } from '@supabase/supabase-js';
 import { createIcons, icons } from 'lucide';
 import { supabase } from './lib/supabase.ts';
 import { fetchAdminSubmissions, subscribeToAdminSubmissions, updateBookingStatus } from './lib/submissions.ts';
+import { getBookingStatusWhatsAppUrl } from './lib/whatsapp.ts';
 
 let adminSubscription: RealtimeChannel | null = null;
 
@@ -203,13 +204,20 @@ async function initAdminView() {
         const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-booking-action]');
         if (!button) return;
 
+        const status = button.dataset.bookingAction as 'approved' | 'rejected' | 'completed';
         button.disabled = true;
-        const { error } = await updateBookingStatus(button.dataset.bookingId || '', button.dataset.bookingAction as 'approved' | 'rejected' | 'completed');
+        const { data, error } = await updateBookingStatus(button.dataset.bookingId || '', status);
         button.disabled = false;
 
         if (error) {
             alert('Status update failed: ' + error.message);
         } else {
+            const whatsAppUrl = getBookingStatusWhatsAppUrl(data, status);
+            if (whatsAppUrl) {
+                window.open(whatsAppUrl, '_blank', 'noopener,noreferrer');
+            } else {
+                alert('Status updated, but no client phone number was available for WhatsApp.');
+            }
             initAdminView();
         }
     };

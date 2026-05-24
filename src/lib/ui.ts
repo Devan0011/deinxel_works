@@ -215,11 +215,11 @@ export const renderServices = (container: HTMLElement) => {
                         <span class="text-[8px] font-accent font-bold uppercase tracking-[0.4em] text-white/80">Digital Solution</span>
                         <span class="text-[9px] font-accent font-bold uppercase tracking-widest text-gold opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-2 group-hover:translate-y-0">Start Project</span>
                     </div>
-                    <div class="flex items-center gap-4">
-                         <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-gold group-hover:border-gold transition-all duration-700 group-hover:rotate-45 shadow-lg group-hover:shadow-gold/20">
+                    <a href="#contact class="flex items-center gap-4">
+                         <a href="#contact" class="w-10 h-10 sm:w-14 sm:h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-gold group-hover:border-gold transition-all duration-700 group-hover:rotate-45 shadow-lg group-hover:shadow-gold/20">
                             <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:text-ink"></i>
-                        </div>
-                    </div>
+                        </a>
+                    </a>
                 </div>
             </div>
         </div>

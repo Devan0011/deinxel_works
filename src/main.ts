@@ -8,6 +8,7 @@ import { renderServices, renderPortfolio, renderPricing, renderTestimonials } fr
 import { supabase } from './lib/supabase.ts';
 import { fetchMessages, sendMessage, subscribeToMessages } from './lib/chat.ts';
 import { fetchAdminSubmissions, submitBookingRequest, submitContactMessage, subscribeToAdminSubmissions, updateBookingStatus } from './lib/submissions.ts';
+import { getBookingStatusWhatsAppUrl } from './lib/whatsapp.ts';
 
 import { fetchFiles, getFileUrl, uploadFile } from './lib/storage.ts';
 
@@ -783,12 +784,19 @@ async function initAdminView() {
         const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-booking-action]');
         if (!button) return;
 
+        const status = button.dataset.bookingAction as 'approved' | 'rejected' | 'completed';
         button.disabled = true;
-        const { error } = await updateBookingStatus(button.dataset.bookingId || '', button.dataset.bookingAction as 'approved' | 'rejected' | 'completed');
+        const { data, error } = await updateBookingStatus(button.dataset.bookingId || '', status);
         button.disabled = false;
         if (error) {
             alert('Status update failed: ' + error.message);
         } else {
+            const whatsAppUrl = getBookingStatusWhatsAppUrl(data, status);
+            if (whatsAppUrl) {
+                window.open(whatsAppUrl, '_blank', 'noopener,noreferrer');
+            } else {
+                alert('Status updated, but no client phone number was available for WhatsApp.');
+            }
             initAdminView();
         }
     };
