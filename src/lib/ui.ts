@@ -454,9 +454,9 @@ export const renderPricing = (container: HTMLElement) => {
 
 export const renderTestimonials = (container: HTMLElement) => {
   const reviews = [
-    { name: 'Marcus Chen', role: 'Art Director, Ethereal', text: 'Professional, creative, and highly skilled. The final website exceeded expectations with smooth animations and premium design quality.' },
-    { name: 'Sarah Jenkins', role: 'Founder, Horizon', text: 'Excellent communication and fast delivery. The admin dashboard and backend system were extremely well built.' },
-    { name: 'Elena Rossi', role: 'CEO, Velvet Luxury', text: 'Modern UI, responsive design, and strong technical implementation. Highly recommended for professional web solutions.' }
+    { name: 'Athira R', role: 'Personal Brand', text: 'One of the best web service experiences I’ve had. They focused on both design and functionality, making the site attractive and easy to use.' },
+    { name: 'Vishnu T K', role: 'Clothing Store', text: 'They understood exactly what I wanted and added creative improvements on their own. The final result was modern, elegant, and unique.' },
+    { name: 'Adil K M', role: 'Restaurant Owner', text: 'Professional work with excellent communication. They handled everything from design to deployment smoothly.' }
   ];
 
   container.innerHTML = reviews.map((r, i) => `
