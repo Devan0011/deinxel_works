@@ -227,9 +227,9 @@ export const renderServices = (container: HTMLElement) => {
 
 export const renderPortfolio = (container: HTMLElement) => {
   const projects = [
-    { title: 'Electro Hub', category: 'E-Commerce', img: 'elements/Screenshot 2026-05-26 001318.png', color: 'rgba(0, 70, 67, 0.4)', link: 'https://ecom-frontend-livid-eight.vercel.app' },
-    { title: 'Velvet & Bean', category: 'Cafe', img: 'elements/cafe.png', color: 'rgba(212, 175, 55, 0.4)', link: '' },
-    { title: 'Aether Grand', category: 'Convention Center', img: 'elements/aether.png', color: 'rgba(0, 70, 67, 0.4)', link: '' },
+    { title: 'Electro Hub', category: 'E-Commerce', img: 'public/images/ecom.png', color: 'rgba(0, 70, 67, 0.4)' },
+    { title: 'Velvet & Bean', category: 'Cafe', img: 'public/images/cafe.png', color: 'rgba(212, 175, 55, 0.4)' },
+    { title: 'Aether Grand', category: 'Convention Center', img: 'public/images/aether.png', color: 'rgba(0, 70, 67, 0.4)' },
   ];
 
   container.innerHTML = projects.map((p, i) => `
