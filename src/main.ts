@@ -419,6 +419,7 @@ function initTestimonialScroll() {
 function setupPortalFunctions() {
     const overlay = document.getElementById('portal-overlay')!;
     const authBtn = document.getElementById('auth-btn')!;
+    const mobileAuthBtn = document.getElementById('mobile-auth-btn');
     const closeBtn = document.getElementById('close-portal')!;
     const loginForm = document.getElementById('login-form') as HTMLFormElement;
     const authPanelTitle = document.getElementById('auth-panel-title')!;
@@ -470,6 +471,13 @@ function setupPortalFunctions() {
     };
 
     authBtn.addEventListener('click', showOverlay);
+    mobileAuthBtn?.addEventListener('click', () => {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu?.classList.remove('translate-x-0');
+        mobileMenu?.classList.add('translate-x-full');
+        lenis.start();
+        showOverlay();
+    });
     closeBtn.addEventListener('click', hideOverlay);
 
     const showPortalView = (viewName: string) => {
@@ -638,6 +646,11 @@ async function initClientDashboard() {
     const dashboardView = document.getElementById('dashboard-view');
     const statValues = dashboardView?.querySelectorAll('.grid.grid-cols-2 .font-display.group-hover\\:scale-110, .grid.grid-cols-2 .font-display.group-hover\\:scale-110.transition-transform');
     const projectList = document.getElementById('project-list');
+    const roadmapButton = document.getElementById('view-roadmap-btn') as HTMLButtonElement | null;
+
+    if (roadmapButton && projectList) {
+        roadmapButton.onclick = () => projectList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
     const [{ data: orders }, { data: bookings }, { data: files }] = await Promise.all([
         supabase.from('orders').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false }),
@@ -987,6 +1000,21 @@ function setupGlobalForms() {
     mobileMenuClose?.addEventListener('click', closeMenu);
     mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
+    document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (event) => {
+            const hash = anchor.getAttribute('href');
+            if (!hash) return;
+
+            const target = hash === '#' ? document.getElementById('hero') : document.querySelector<HTMLElement>(hash);
+            if (!target) return;
+
+            event.preventDefault();
+            closeMenu();
+            history.pushState(null, '', hash === '#' ? '#hero' : hash);
+            lenis.scrollTo(target, { offset: hash === '#booking' ? -120 : -80 });
+        });
+    });
+
     // Contact Form
     const contactForm = document.querySelector('section#contact form:not(#booking-form)') as HTMLFormElement;
     contactForm?.addEventListener('submit', async (e) => {
@@ -1074,7 +1102,7 @@ function setupGlobalForms() {
     window.addEventListener('scroll', () => {
         if (!header) return;
         const mobileMenu = document.getElementById('mobile-menu');
-        const isMenuOpen = mobileMenu && !mobileMenu.classList.contains('pointer-events-none');
+        const isMenuOpen = Boolean(mobileMenu?.classList.contains('translate-x-0'));
 
         const curr = window.pageYOffset;
 

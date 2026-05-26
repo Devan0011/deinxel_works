@@ -215,10 +215,8 @@ export const renderServices = (container: HTMLElement) => {
                         <span class="text-[8px] font-accent font-bold uppercase tracking-[0.4em] text-white/80">Digital Solution</span>
                         <span class="text-[9px] font-accent font-bold uppercase tracking-widest text-gold opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-2 group-hover:translate-y-0">Start Project</span>
                     </div>
-                    <a href="#contact class="flex items-center gap-4">
-                         <a href="#contact" class="w-10 h-10 sm:w-14 sm:h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-gold group-hover:border-gold transition-all duration-700 group-hover:rotate-45 shadow-lg group-hover:shadow-gold/20">
-                            <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:text-ink"></i>
-                        </a>
+                    <a href="#contact" aria-label="Start a project inquiry" class="w-10 h-10 sm:w-14 sm:h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-gold group-hover:border-gold transition-all duration-700 group-hover:rotate-45 shadow-lg group-hover:shadow-gold/20">
+                        <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:text-ink"></i>
                     </a>
                 </div>
             </div>
@@ -229,11 +227,9 @@ export const renderServices = (container: HTMLElement) => {
 
 export const renderPortfolio = (container: HTMLElement) => {
   const projects = [
-    { title: 'Nexus Hub', category: 'Systems Architecture', img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800', color: 'rgba(0, 70, 67, 0.4)' },
-    { title: 'Ethereal Lux', category: 'Luxury Commerce', img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800', color: 'rgba(212, 175, 55, 0.4)' },
-    { title: 'Alterra AI', category: 'Digital Narrative', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800', color: 'rgba(0, 70, 67, 0.4)' },
-    { title: 'Velvet Studio', category: 'Immersive UI', img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800', color: 'rgba(212, 175, 55, 0.4)' },
-    { title: 'Horizon', category: 'Growth Strategy', img: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800', color: 'rgba(0, 70, 67, 0.4)' }
+    { title: 'Electro Hub', category: 'E-Commerce', img: 'elements/Screenshot 2026-05-26 001318.png', color: 'rgba(0, 70, 67, 0.4)', link: 'https://ecom-frontend-livid-eight.vercel.app' },
+    { title: 'Velvet & Bean', category: 'Cafe', img: 'elements/cafe.png', color: 'rgba(212, 175, 55, 0.4)', link: '' },
+    { title: 'Aether Grand', category: 'Convention Center', img: 'elements/aether.png', color: 'rgba(0, 70, 67, 0.4)', link: '' },
   ];
 
   container.innerHTML = projects.map((p, i) => `
@@ -247,10 +243,7 @@ export const renderPortfolio = (container: HTMLElement) => {
                 <div class="space-y-3 sm:space-y-4 md:space-y-8 translate-y-10 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-1000">
                     <span class="text-[9px] md:text-[10px] font-accent font-bold uppercase tracking-[0.4em] sm:tracking-[0.6em] text-gold">${p.category}</span>
                     <h3 class="text-3xl sm:text-4xl md:text-6xl lg:text-8xl italic font-display leading-[0.85] tracking-tighter">${p.title}</h3>
-                    <p class="text-sm sm:text-base md:text-lg lg:text-2xl font-display italic opacity-60 max-w-xl line-clamp-2 md:line-clamp-none">Bespoke technical production and immersive sensory design for the next evolution of digital products.</p>
-                    <div class="pt-4 sm:pt-6 md:pt-10">
-                        <button class="btn-primary border-gold bg-gold hover:bg-white hover:border-white px-6 sm:px-8 py-2.5 sm:py-3 text-[9px] md:text-[10px]"><span>Explore Legacy</span></button>
-                    </div>
+                    <p class="text-sm sm:text-base md:text-lg lg:text-2xl font-display italic opacity-60 max-w-xl line-clamp-2 md:line-clamp-none">Bespoke technical production and immersive sensory design for the next evolution of websites.</p>
                 </div>
             </div>
 
@@ -454,7 +447,7 @@ export const renderPricing = (container: HTMLElement) => {
 
 export const renderTestimonials = (container: HTMLElement) => {
   const reviews = [
-    { name: 'Athira R', role: 'Personal Brand', text: 'One of the best web service experiences I’ve had. They focused on both design and functionality, making the site attractive and easy to use.' },
+    { name: 'Athira R', role: 'Personal Brand', text: "One of the best web service experiences I've had. They focused on both design and functionality, making the site attractive and easy to use." },
     { name: 'Vishnu T K', role: 'Clothing Store', text: 'They understood exactly what I wanted and added creative improvements on their own. The final result was modern, elegant, and unique.' },
     { name: 'Adil K M', role: 'Restaurant Owner', text: 'Professional work with excellent communication. They handled everything from design to deployment smoothly.' }
   ];

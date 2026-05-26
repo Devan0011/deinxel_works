@@ -20,7 +20,7 @@
     <!-- Navigation -->
     <header id="main-header" class="fixed top-0 left-0 w-full z-50 px-4 py-3 sm:py-6 transition-all duration-500 ease-out">
       <nav class="max-w-7xl mx-auto flex items-center justify-between glass px-5 sm:px-8 py-3 rounded-full shadow-lg">
-        <a href="#" class="text-xl sm:text-2xl font-display font-bold text-primary-accent italic tracking-tighter shrink-0">Deinxel</a>
+        <a href="#hero" class="text-xl sm:text-2xl font-display font-bold text-primary-accent italic tracking-tighter shrink-0">Deinxel</a>
         <div class="hidden lg:flex items-center gap-8 xl:gap-10 text-[9px] xl:text-[10px] font-accent font-bold uppercase tracking-[0.3em]">
           <a href="#about" class="hover:text-primary-accent transition-colors magnetic"><span>Digital Studio</span></a>
           <a href="#services" class="hover:text-primary-accent transition-colors magnetic"><span>Services</span></a>
@@ -29,11 +29,11 @@
           <a href="#contact" class="hover:text-primary-accent transition-colors magnetic"><span>Inquiry</span></a>
         </div>
         <div class="flex items-center gap-3 sm:gap-6">
-          <button id="auth-btn" class="block text-[10px] font-accent font-bold uppercase tracking-[0.2em] text-primary-accent/60 hover:text-primary-accent transition-colors">Access</button>
-          <a href="#booking" class="btn-primary py-2.5 px-6 text-[10px] whitespace-nowrap">
+          <button type="button" id="auth-btn" class="hidden sm:block text-[10px] font-accent font-bold uppercase tracking-[0.2em] text-primary-accent/60 hover:text-primary-accent transition-colors">Access</button>
+          <a href="#booking" class="btn-primary hidden sm:inline-flex py-2.5 px-6 text-[10px] whitespace-nowrap">
             <span>Book Call</span>
           </a>
-          <button id="mobile-menu-toggle" class="lg:hidden w-10 h-10 flex items-center justify-center glass rounded-full text-primary-accent hover:bg-primary-accent/5 transition-colors">
+          <button type="button" id="mobile-menu-toggle" class="lg:hidden w-10 h-10 flex items-center justify-center glass rounded-full text-primary-accent hover:bg-primary-accent/5 transition-colors">
             <i data-lucide="menu" class="w-5 h-5"></i>
           </button>
         </div>
@@ -429,15 +429,15 @@
             <div class="absolute inset-0 atmosphere-bottom opacity-20 transition-transform duration-[3000ms] group-hover:scale-110"></div>
             <h2 class="text-[16vw] md:text-[14vw] leading-[0.75] tracking-tight mb-16 md:mb-24 italic text-ink relative z-10 transition-transform duration-1000 group-hover:-translate-y-4">Initiate <span class="text-primary-accent">Now</span>.</h2>
             <div class="flex flex-col items-center gap-12 md:gap-16 relative z-10">
-                <a href="mailto:dev.deinxel@gmail.com" class="text-3xl sm:text-4xl md:text-7xl font-display text-primary-accent hover:text-gold transition-all duration-700 underline underline-offset-[20px] md:underline-offset-[30px] decoration-[0.5px] decoration-primary-accent/20 hover:decoration-gold">dev.deinxel@gmail.com</a>
+                <a href="mailto:dev.deinxel@gmail.com" class="text-2xl xs:text-3xl sm:text-4xl md:text-7xl font-display text-primary-accent hover:text-gold transition-all duration-700 underline underline-offset-[20px] md:underline-offset-[30px] decoration-[0.5px] decoration-primary-accent/20 hover:decoration-gold break-all px-4">dev.deinxel@gmail.com</a>
                 <div class="flex flex-wrap justify-center gap-8 md:gap-16">
                     <a href="https://www.instagram.com/deinxel_works" class="text-[9px] md:text-[10px] font-accent font-bold uppercase tracking-[0.4em] text-primary-accent hover:text-gold transition-all duration-500 flex items-center gap-3">
                         <span class="w-2 h-2 bg-primary-accent rounded-full group-hover:bg-gold"></span>
                         Instagram
                     </a>
-                    <a href="#" class="text-[10px] font-accent font-bold uppercase tracking-[0.4em] text-primary-accent hover:text-gold transition-all duration-500 flex items-center gap-3">
+                    <a href="mailto:dev.deinxel@gmail.com" class="text-[10px] font-accent font-bold uppercase tracking-[0.4em] text-primary-accent hover:text-gold transition-all duration-500 flex items-center gap-3">
                         <span class="w-2 h-2 bg-primary-accent rounded-full group-hover:bg-gold"></span>
-                        LinkedIn
+                        Email
                     </a>
                     <a href="https://wa.me/8848541003" class="text-[10px] font-accent font-bold uppercase tracking-[0.4em] text-primary-accent hover:text-gold transition-all duration-500 flex items-center gap-3">
                         <span class="w-2 h-2 bg-primary-accent rounded-full group-hover:bg-gold"></span>
@@ -452,12 +452,12 @@
             <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
                 <div class="flex items-center gap-4">
                     <div class="w-2 h-2 bg-gold rounded-full shadow-[0_0_8px_rgba(212,175,55,0.8)]"></div>
-                    <div class="text-[10px] font-accent font-bold uppercase tracking-[0.4em] text-primary-accent opacity-40">© 2026 Deinxel International</div>
+                    <div class="text-[10px] font-accent font-bold uppercase tracking-[0.4em] text-primary-accent opacity-40">(c) 2026 Deinxel International</div>
                 </div>
                 <div class="flex flex-col md:flex-row gap-6 md:gap-16 text-[9px] md:text-[10px] font-accent font-bold uppercase tracking-[0.4em] text-primary-accent opacity-60 text-center md:text-left">
                     <div class="flex gap-8 justify-center">
-                        <a href="#" class="hover:text-gold transition-colors">Privacy Charter</a>
-                        <a href="#" class="hover:text-gold transition-colors">Terms</a>
+                        <a href="mailto:dev.deinxel@gmail.com?subject=Privacy%20Charter" class="hover:text-gold transition-colors">Privacy Charter</a>
+                        <a href="mailto:dev.deinxel@gmail.com?subject=Terms" class="hover:text-gold transition-colors">Terms</a>
                     </div>
                 </div>
             </div>
@@ -565,7 +565,7 @@
                         <div class="glass p-6 sm:p-8 md:p-12 lg:p-20 rounded-[30px] sm:rounded-[40px] md:rounded-[80px] border-white shadow-2xl relative overflow-hidden">
                             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-16">
                                 <h3 class="text-2xl sm:text-3xl md:text-4xl italic font-display">Development <span class="text-primary-accent">Phases</span></h3>
-                                <button class="text-[9px] sm:text-[10px] font-accent font-bold uppercase tracking-widest text-primary-accent opacity-40 hover:opacity-100 transition-opacity underline decoration-primary-accent/20 w-fit">View Roadmap</button>
+                                <button type="button" id="view-roadmap-btn" class="text-[9px] sm:text-[10px] font-accent font-bold uppercase tracking-widest text-primary-accent opacity-40 hover:opacity-100 transition-opacity underline decoration-primary-accent/20 w-fit">View Roadmap</button>
                             </div>
                             <div class="space-y-8 sm:space-y-12" id="project-list">
                                 <div class="group p-6 sm:p-10 bg-primary-accent/5 rounded-[24px] sm:rounded-[40px] border border-primary-accent/5 hover:border-primary-accent/20 transition-all duration-700">
@@ -626,7 +626,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <button class="w-12 h-12 sm:w-20 sm:h-20 bg-primary-accent text-white rounded-[12px] sm:rounded-[32px] flex items-center justify-center shadow-xl shadow-primary-accent/30 hover:scale-105 active:scale-95 transition-all duration-500">
+                            <button type="submit" class="w-12 h-12 sm:w-20 sm:h-20 bg-primary-accent text-white rounded-[12px] sm:rounded-[32px] flex items-center justify-center shadow-xl shadow-primary-accent/30 hover:scale-105 active:scale-95 transition-all duration-500">
                                 <i data-lucide="send" class="w-5 h-5 sm:w-10 sm:h-10"></i>
                             </button>
                         </form>
@@ -646,7 +646,7 @@
                                     <input type="email" value="partner@alpha.studio" class="w-full bg-primary-accent/5 p-6 md:p-10 rounded-[24px] md:rounded-[40px] outline-none font-display text-xl md:text-2xl border border-transparent opacity-50" readonly>
                                 </div>
                             </div>
-                            <button class="btn-primary w-full py-6 md:py-10 rounded-[24px] md:rounded-[40px]"><span>Update Secure Configurations</span></button>
+                            <button type="button" id="settings-save-btn" class="btn-primary w-full py-6 md:py-10 rounded-[24px] md:rounded-[40px]"><span>Update Secure Configurations</span></button>
                         </div>
                     </div>
 
@@ -668,7 +668,7 @@
                                 </div>
                                 <div class="space-y-4 sm:space-y-6 text-left relative group">
                                     <label class="text-[9px] md:text-[10px] font-accent font-bold uppercase tracking-[0.4em] opacity-40 ml-4">Secret Cipher</label>
-                                    <input type="password" id="login-password" placeholder="••••••••" class="w-full glass p-5 sm:p-10 rounded-[20px] sm:rounded-[40px] outline-none focus:border-primary-accent transition-all font-display text-lg sm:text-2xl shadow-inner px-6 sm:px-10" required>
+                                    <input type="password" id="login-password" placeholder="********" class="w-full glass p-5 sm:p-10 rounded-[20px] sm:rounded-[40px] outline-none focus:border-primary-accent transition-all font-display text-lg sm:text-2xl shadow-inner px-6 sm:px-10" required>
                                 </div>
                                 <button type="submit" class="btn-primary w-full py-5 sm:py-10 rounded-[20px] sm:rounded-[40px] shadow-2xl shadow-primary-accent/40">
                                     <span id="auth-submit-label">Initiate Synchronisation</span>
@@ -694,7 +694,7 @@
 
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="fixed inset-0 bg-primary-accent z-[100] flex flex-col items-center overflow-y-auto lg:hidden translate-x-full transition-transform duration-500 py-24 px-8 h-screen w-screen">
-      <button id="mobile-menu-close" class="fixed top-6 right-6 w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full text-white z-[110] transition-colors">
+      <button type="button" id="mobile-menu-close" class="fixed top-6 right-6 w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full text-white z-[110] transition-colors">
         <i data-lucide="x" class="w-8 h-8"></i>
       </button>
       <div class="flex flex-col items-center gap-10 text-center my-auto w-full">
@@ -704,14 +704,15 @@
               <a href="#portfolio" class="text-4xl font-display italic text-white hover:text-gold transition-colors" data-mobile-link>Folio</a>
               <a href="#pricing" class="text-4xl font-display italic text-white hover:text-gold transition-colors" data-mobile-link>Investment</a>
               <a href="#contact" class="text-4xl font-display italic text-white hover:text-gold transition-colors" data-mobile-link>Inquiry</a>
+              <button type="button" id="mobile-auth-btn" class="text-4xl font-display italic text-white hover:text-gold transition-colors">Access</button>
           </div>
           
           <div class="pt-12 border-t border-white/10 w-full max-w-[240px] flex flex-col gap-8">
               <span class="text-[10px] font-accent font-bold uppercase tracking-[0.5em] text-white/40">Connect</span>
               <div class="flex justify-center gap-10">
-                  <a href="" class="text-white/60 hover:text-gold transition-colors"><i data-lucide="instagram" class="w-7 h-7"></i></a>
-                  <a href="#" class="text-white/60 hover:text-gold transition-colors"><i data-lucide="linkedin" class="w-7 h-7"></i></a>
-                  <a href="#" class="text-white/60 hover:text-gold transition-colors"><i data-lucide="twitter" class="w-7 h-7"></i></a>
+                  <a href="https://www.instagram.com/deinxel_works" aria-label="Instagram" class="text-white/60 hover:text-gold transition-colors"><i data-lucide="instagram" class="w-7 h-7"></i></a>
+                  <a href="mailto:dev.deinxel@gmail.com" aria-label="Email" class="text-white/60 hover:text-gold transition-colors"><i data-lucide="mail" class="w-7 h-7"></i></a>
+                  <a href="https://wa.me/8848541003" aria-label="WhatsApp" class="text-white/60 hover:text-gold transition-colors"><i data-lucide="message-circle" class="w-7 h-7"></i></a>
               </div>
           </div>
       </div>
