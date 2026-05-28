@@ -1,15 +1,19 @@
 import './index.css';
 import gsap from 'gsap';
 import type { RealtimeChannel, User } from '@supabase/supabase-js';
-import { createIcons, icons } from 'lucide';
+import { Calendar, createIcons } from 'lucide';
 import { supabase } from './lib/supabase.ts';
 import { fetchAdminSubmissions, subscribeToAdminSubmissions, updateBookingStatus } from './lib/submissions.ts';
 import { getBookingStatusWhatsAppUrl } from './lib/whatsapp.ts';
 
 let adminSubscription: RealtimeChannel | null = null;
 
+const iconSet = {
+    Calendar
+};
+
 function refreshIcons() {
-    createIcons({ icons });
+    createIcons({ icons: iconSet });
 }
 
 function escapeHtml(value: unknown) {

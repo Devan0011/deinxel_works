@@ -1,7 +1,47 @@
 import './index.css';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { createIcons, icons } from 'lucide';
+import {
+    ArrowRight,
+    Award,
+    Calendar,
+    CheckCheck,
+    CheckCircle,
+    ChevronRight,
+    Code,
+    Cpu,
+    Crown,
+    FileText,
+    Gauge,
+    Gem,
+    Headphones,
+    Instagram,
+    Layers,
+    Layout,
+    LifeBuoy,
+    Mail,
+    Menu,
+    MessageCircle,
+    Monitor,
+    MousePointerClick,
+    Palette,
+    PanelsTopLeft,
+    Paperclip,
+    Plus,
+    Quote,
+    RadioTower,
+    Rocket,
+    Send,
+    Settings2,
+    ShieldCheck,
+    ShoppingBag,
+    Sparkles,
+    Star,
+    Wrench,
+    X,
+    Zap,
+    createIcons
+} from 'lucide';
 import SplitType from 'split-type';
 import { initLenis } from './lib/lenis.ts';
 import { renderServices, renderPortfolio, renderPricing, renderTestimonials } from './lib/ui.ts';
@@ -14,6 +54,47 @@ import { fetchFiles, getFileUrl, uploadFile } from './lib/storage.ts';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const iconSet = {
+    ArrowRight,
+    Award,
+    Calendar,
+    CheckCheck,
+    CheckCircle,
+    ChevronRight,
+    Code,
+    Cpu,
+    Crown,
+    FileText,
+    Gauge,
+    Gem,
+    Headphones,
+    Instagram,
+    Layers,
+    Layout,
+    LifeBuoy,
+    Mail,
+    Menu,
+    MessageCircle,
+    Monitor,
+    MousePointerClick,
+    Palette,
+    PanelsTopLeft,
+    Paperclip,
+    Plus,
+    Quote,
+    RadioTower,
+    Rocket,
+    Send,
+    Settings2,
+    ShieldCheck,
+    ShoppingBag,
+    Sparkles,
+    Star,
+    Wrench,
+    X,
+    Zap
+};
+
 // Initialize Smooth Scroll
 const lenis = initLenis();
 
@@ -24,7 +105,7 @@ let chatSubscription: any = null;
 let adminSubscription: any = null;
 
 function refreshIcons() {
-    createIcons({ icons });
+    createIcons({ icons: iconSet });
 }
 
 function escapeHtml(value: unknown) {

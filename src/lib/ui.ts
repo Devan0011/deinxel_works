@@ -62,7 +62,7 @@ export const renderServices = (container: HTMLElement) => {
       ]
     },
     {
-      icon: 'PanelsTopLeft',
+      icon: 'panels-top-left',
       title: 'Admin Dashboard Systems',
       desc: 'Powerful dashboard systems designed to give complete control over website content and business operations.',
       sections: [
@@ -81,7 +81,7 @@ export const renderServices = (container: HTMLElement) => {
       ]
     },
     {
-      icon: 'ShoppingBag',
+      icon: 'shopping-bag',
       title: 'E-Commerce Development',
       desc: 'Modern online stores built for performance, security, and smooth customer experiences.',
       sections: [
@@ -100,7 +100,7 @@ export const renderServices = (container: HTMLElement) => {
       ]
     },
     {
-      icon: 'RadioTower',
+      icon: 'radio-tower',
       title: 'Real-Time Features & Interactive Systems',
       desc: 'Interactive web experiences powered by real-time technologies and dynamic communication systems.',
       sections: [
@@ -227,9 +227,9 @@ export const renderServices = (container: HTMLElement) => {
 
 export const renderPortfolio = (container: HTMLElement) => {
   const projects = [
-    { title: 'Electro Hub', category: 'E-Commerce', img: 'public/images/ecom.png', color: 'rgba(0, 70, 67, 0.4)' },
-    { title: 'Velvet & Bean', category: 'Cafe', img: 'public/images/cafe.png', color: 'rgba(212, 175, 55, 0.4)' },
-    { title: 'Aether Grand', category: 'Convention Center', img: 'public/images/aether.png', color: 'rgba(0, 70, 67, 0.4)' },
+    { title: 'Electro Hub', category: 'E-Commerce', img: '/images/ecom.png', color: 'rgba(0, 70, 67, 0.4)' },
+    { title: 'Velvet & Bean', category: 'Cafe', img: '/images/cafe.png', color: 'rgba(212, 175, 55, 0.4)' },
+    { title: 'Aether Grand', category: 'Convention Center', img: '/images/aether.png', color: 'rgba(0, 70, 67, 0.4)' },
   ];
 
   container.innerHTML = projects.map((p, i) => `
@@ -302,8 +302,8 @@ export const renderPricing = (container: HTMLElement) => {
     { icon: 'Palette', title: 'Premium Visual Design', text: 'Modern layouts with immersive user experiences.' },
     { icon: 'Zap', title: 'High-Speed Performance', text: 'Optimized architecture for faster loading and smoother interaction.' },
     { icon: 'Layers', title: 'Scalable Technology', text: 'Built using future-ready development practices.' },
-    { icon: 'MousePointerClick', title: 'Modern User Experience', text: 'Interactive sections, animations, and responsive layouts.' },
-    { icon: 'ShieldCheck', title: 'Secure Development', text: 'Clean, scalable, and secure code structure.' },
+    { icon: 'mouse-pointer-click', title: 'Modern User Experience', text: 'Interactive sections, animations, and responsive layouts.' },
+    { icon: 'shield-check', title: 'Secure Development', text: 'Clean, scalable, and secure code structure.' },
     { icon: 'Headphones', title: 'Reliable Support', text: 'Continuous communication and technical assistance.' }
   ];
   const addOns = ['Advanced Admin Features', 'Real-Time Chat System', 'Payment Gateway Integration', 'Multi-Language Support', 'Blog System', 'Custom API Development', 'E-Commerce Features', 'SEO Growth Optimization', 'Premium Motion Effects', 'Long-Term Maintenance'];
